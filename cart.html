@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Products - Red store</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,200&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script src="rellax.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="navbar">
+        <div class="logo">
+          <a href="index.html"><img src="images/logo1.png" alt="" width="135px"></a>
+        </div>
+        <nav>
+          <ul id="MenuItems">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="products.html">Produits</a></li>
+            <li><a href="about.html">A Propos</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="account.html">Compte</a></li>
+          </ul>
+        </nav>
+        <a href="cart.html"><img src="images/cart.png" alt="" width="30px" height="30px"></a>
+        <img src="images/menu.png" alt="" class="menu-icon" onclick="menutoggle()">
+        <div id="login-section">
+          <div class="login-content">
+            <p id="login-message">Vous devez être connecté pour valider votre commande.</p>
+            <button id="login-button" onclick="openLoginModal()">Se connecter</button>
+            <button id="logout-button" onclick="handleLogout()" style="display: none;">Se déconnecter</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+      <!-- Cart Items Details -->
+      <div class="small-container cart-page">
+        <table id="cart-table">
+          <tr>
+            <th>Produit</th>
+            <th>Quantité</th>
+            <th>Sous-total</th>
+            <th>Action</th>
+          </tr>
+        </table>
+        <div class="total-price">
+          <table>
+            <tr>
+              <td>Total:</td>
+              <td id="subtotal"> 0.00 FCFA</td>
+            </tr>
+            <tr>
+              <td>Total Général:</td>
+              <td id="total"> 0.00 FCFA</td>
+            </tr>
+            <tr>
+              <td><a href="products.html">Continuer les achats</a></td>
+              <td><a href="#">Payer</a></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+    
+    <!-- Login Modal -->
+    <div id="login-modal">
+      <div class="modal-content">
+        <h3>Connexion</h3>
+        <form onsubmit="event.preventDefault(); handleLoginSubmit();">
+          <input type="text" id="username" placeholder="Nom d'utilisateur" required>
+          <input type="password" id="password" placeholder="Mot de passe" required>
+          <p id="login-error-message" class="error-message"></p>
+          <button type="submit">Se connecter</button>
+        </form>
+        <button onclick="closeLoginModal()">Annuler</button>
+      </div>
+    </div>
+     
+    <!-- Footer -->
+    <div class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="footer-col-1">
+            <h3>Download Our App</h3>
+            <p>
+              Download App for Android <br />
+              and ios mobile phone
+            </p>
+            <div class="app-logo">
+              <img src="images/play-store.png" alt="" />
+              <img src="images/app-store.png" alt="" />
+            </div>
+          </div>
+          <div class="footer-col-2">
+            <img src="images/Logo2.png" alt="" />
+            <p>
+              Lorem, ipsum dolor sit amet consectetur <br />adipisicing elit.
+              Porro, eum?
+            </p>
+          </div>
+          <div class="footer-col-3">
+            <h3>Useful Links</h3>
+            <ul>
+              <li>Coupons</li>
+              <li>Blog Post</li>
+              <li>Return Policy</li>
+              <li>Join Affiliate</li>
+            </ul>
+          </div>
+
+          <div class="footer-col-4">
+            <h3>Follow us</h3>
+            <ul>
+              <li>Facebook</li>
+              <li>Twitter</li>
+              <li>Instagram</li>
+              <li>YouTube</li>
+            </ul>
+          </div>
+        </div>
+        <hr />
+        <p class="copyright">Copyright 2020 - introidx</p>
+      </div>
+    </div>
+    <!-- JS for Toggle menu -->
+    <script>
+      var MenuItems = document.getElementById("MenuItems");
+
+      MenuItems.style.maxHeight = "0px";
+
+      function menutoggle() {
+        if (MenuItems.style.maxHeight == "0px") {
+          MenuItems.style.maxHeight = "200px";
+        } else {
+          MenuItems.style.maxHeight = "0px";
+        }
+      }
+        // Code JavaScript
+
+        /// Variables globales
+        let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+        let loggedIn = false;
+        // Sélection d'un article et ajout au panier
+      function addToCart(productName, price) {
+        console.log(`Ajout du produit ${productName} au panier`);
+        const product = {
+          name: productName,
+          price: price,
+          quantity: 1
+        };
+
+        cartItems.push(product);
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        console.log(cartItems); // pour vérifier le contenu du panier
+        updateCartDisplay();
+      }
+
+        // Mise à jour de l'affichage du panier
+      function updateCartDisplay() {
+        const cartTable = document.getElementById('cart-table');
+
+        // Réinitialisation de la table du panier
+        cartTable.innerHTML = `
+          <tr>
+            <th>Produit</th>
+            <th>Quantité</th>
+            <th>Sous-Total</th>
+          </tr>
+        `;
+
+        let subtotal = 0;
+
+        // Ajout des articles au panier à la table
+        cartItems.forEach(item => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>
+          <div class="cart-info">
+            <img src="images/${item.name.toLowerCase()}.jpg" alt="${item.name}" onerror="this.src='images/default.jpg'"/>
+            <div>
+              <p>${item.name}</p>
+              <small>Prix: ${item.price.toFixed(2)} FCFA</small>
+              <br />
+              <a href="#" onclick="removeItem('${item.name}')">Supprimer</a>
+            </div>
+          </div>
+          </td>
+          <td><input type="number" value="${item.quantity}" min="1" onchange="updateQuantity('${item.name}', this.value)" /></td>
+          <td>${(item.price * item.quantity).toFixed(2)}FCFA</td>
+        `;
+
+        cartTable.appendChild(row);
+
+        subtotal += item.price * item.quantity;
+      });
+
+        
+      // Mise à jour du total
+      const subtotalElement = document.getElementById('subtotal');
+      const totalElement = document.getElementById('total');
+
+      subtotalElement.textContent = `${subtotal.toFixed(2)}FCFA`;
+      totalElement.textContent = `${subtotal.toFixed(2)}FCFA`;
+
+      const isLoggedIn = loggedIn;
+      const hasValidOrder = isLoggedIn && orderValidated; // Supposons que `orderValidated` est une variable qui stocke l'état de validation de la commande
+    
+      // Vider le panier si l'utilisateur n'est pas connecté ou s'il n'a pas de commande valide
+      if (!isLoggedIn || !hasValidOrder) {
+      cartItems = [];
+      localStorage.setItem('cartItems', JSON.stringify(cartItems));
+      }
+    }
+
+    function hasValidOrder() {
+      return true;
+    }
+
+      // Mise à jour de la quantité d'un article dans le panier
+    function updateQuantity(productName, quantity) {
+      const product = cartItems.find(item => item.name === productName);
+      product.quantity = parseInt(quantity, 10);
+      localStorage.setItem('cartItems', JSON.stringify(cartItems));
+      updateCartDisplay();
+    }
+
+      // Suppression d'un article du panier
+    function removeItem(productName) {
+      cartItems = cartItems.filter(item => item.name !== productName);
+      localStorage.setItem('cartItems', JSON.stringify(cartItems));
+      updateCartDisplay();
+    }
+
+      // Validation de la commande
+    function checkout() {
+      if (loggedIn) {
+      // Le client est connecté, continuer avec la validation de la commande
+        console.log("Commande validée !");
+      } else {
+        // Le client n'est pas connecté, ouvrir la fenêtre modale de connexion
+        openLoginModal();
+
+        // Réinitialiser le panier si la commande n'a pas été validée
+        cartItems = [];
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        updateCartDisplay();
+  
+      }
+    }
+
+    // Ouvrir la fenêtre modale de connexion
+    function openLoginModal() {
+      const modal = document.getElementById('login-modal');
+      modal.style.display = 'block';
+    }
+
+    // Fermer la fenêtre modale de connexion
+    function closeLoginModal() {
+      const modal = document.getElementById('login-modal');
+      modal.style.display = 'none';
+    }
+
+    // Gérer la soumission du formulaire de connexion
+    function handleLoginSubmit() {
+      const usernameInput = document.getElementById('username');
+      const passwordInput = document.getElementById('password');
+      const loginErrorMessage = document.getElementById('login-error-message');
+
+    // Exemple simple : vérification basée sur des valeurs prédéfinies
+      if (usernameInput.value === 'john' && passwordInput.value === 'password') {
+        loggedIn = true;
+        localStorage.setItem('loggedIn', JSON.stringify(loggedIn)); // Enregistrer l'état de connexion
+        closeLoginModal();
+        updateLoginStatus(); // Met à jour l'interface utilisateur pour refléter le nouveau statut de connexion
+        checkout(); // Continuer avec la validation de la commande
+        console.log("Utilisateur connecté");
+      } else {
+        loginErrorMessage.textContent = "Nom d'utilisateur ou mot de passe incorrect.";
+        console.log("Veuillez vous connecter pour afficher votre panier.");
+      }
+    }
+
+    // Mise à jour du statut de connexion dans l'interface utilisateur
+    function updateLoginStatus() {
+      const loginButton = document.getElementById('login-button');
+      const logoutButton = document.getElementById('logout-button');
+      const loginMessage = document.getElementById('login-message');
+
+      loggedIn = JSON.parse(localStorage.getItem('loggedIn')) || false; // Récupérer l'état de connexion depuis le localStorage
+
+      if (loggedIn) {
+        loginButton.style.display = 'none';
+        logoutButton.style.display = 'block';
+        loginMessage.textContent = 'Utilisateur connecté';
+      } else {
+        loginButton.style.display = 'block';
+        logoutButton.style.display = 'none';
+        loginMessage.textContent = 'Vous devez être connecté pour valider votre commande';
+      }
+    }
+    function handleLogout() {
+
+      // Vider le panier
+      cartItems = [];
+      localStorage.setItem('cartItems', JSON.stringify(cartItems));
+
+      // Supprimer le statut de connexion
+      localStorage.removeItem('loggedIn');
+
+      updateCartDisplay();
+
+      loggedIn = false; // Réinitialise le statut de connexion
+      updateLoginStatus(); // Met à jour l'interface utilisateur pour refléter le nouveau statut de connexion
+      console.log("Utilisateur déconnecté");
+    }
+
+    window.onload = function() {
+      // Mise à jour initiale du statut de connexion dans l'interface utilisateur
+      updateLoginStatus();
+      updateCartDisplay();
+    }
+    </script>
+    
+  </body>
+</html>

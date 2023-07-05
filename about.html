@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Propos - Red store</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,200&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    body{
+      background-image: url(images/background5.png);
+      background-repeat: no-repeat;
+      
+    }
+    h1{
+      color: rgb(8, 8, 8);
+    }
+    #MenuItems li a {
+      color: #0e0d0d; /* Couleur du texte */
+    }
+    p{
+      color: rgb(0, 0, 0);
+    }
+    .footer-col-3 li a,
+    .social-links li a {
+      color:#fffefe;
+    }
+    
+  </style>
+  <script src="rellax.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="navbar">
+      <div class="logo">
+        <a href="index.html"><img src="images/logo1.png" alt="" width="135px"></a>
+      </div>
+      <nav>
+        <ul id="MenuItems">
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="products.html">Produits</a></li>
+          <li><a href="about.html">A Propos</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="account.html">Compte</a></li>
+        </ul>
+      </nav>
+      <a href="cart.html"><img src="images/cart.png" alt="" width="30px" height="30px">
+      </a>
+      <img src="images/menu.png" alt="" class="menu-icon" onclick="menutoggle()">
+    </div>
+  </div>
+
+  <!-- À Propos -->
+  <div class="small-container">
+    <div class="row">
+      <div class="col-2">
+        <h1>À Propos de Notre Boutique</h1>
+        <p>Nous sommes une boutique en ligne spécialisée dans la vente de produits frais et de qualité. Notre objectif est de fournir des produits sains et savoureux à nos clients tout en soutenant une agriculture locale et durable.</p>
+        <p>Notre équipe d'agriculteurs passionnés travaille avec soin pour cultiver des fruits et légumes de premier choix, garantissant ainsi une fraîcheur et une saveur incomparables. Nous accordons une grande importance à la qualité de nos produits et à la satisfaction de nos clients.</p>
+        <p>Parcourez notre sélection variée de produits, choisissez ce qui vous plaît et profitez d'une expérience de shopping pratique et agréable. Nous nous engageons à vous offrir un service exceptionnel et à répondre à tous vos besoins.</p> <br>
+      </div>
+      <div class="col-2">
+        <img src="images/about1.jpg" width="900px" height="600px" alt="À Propos de Notre Boutique" style="padding: 20px;">
+      </div>
+    </div>
+  </div>
+   <!-- Login Modal -->
+   <div id="login-modal">
+    <div class="modal-content">
+      <h3>Connexion</h3>
+      <form onsubmit="event.preventDefault(); handleLoginSubmit();">
+        <input type="text" id="username" placeholder="Nom d'utilisateur" required>
+        <input type="password" id="password" placeholder="Mot de passe" required>
+        <p id="login-error-message" class="error-message"></p>
+        <button type="submit">Se connecter</button>
+      </form>
+      <button onclick="closeLoginModal()">Annuler</button>
+    </div>
+  </div>
+  <!-- Footer -->
+  <div class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="footer-col-1">
+          <h3>Téléchargez Notre Application</h3>
+          <p>Téléchargez l'application pour Android et iOS</p>
+          <div class="app-logo">
+            <img src="images/play-store.png" alt="Play Store">
+            <img src="images/app-store.png" alt="App Store">
+          </div>
+        </div>
+        <div class="footer-col-2">
+          <img src="images/Logo2.png" alt="" width="180px">
+          <p>Notre objectif est de fournir des produits frais et de qualité à nos clients, tout en soutenant une agriculture locale et durable.</p>
+        </div>
+        <div class="footer-col-3">
+          <h3>Liens Utiles</h3>
+          <ul>
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="products.html">Produits</a></li>
+            <li><a href="about.html">A Propos</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col-4">
+          <h3>Suivez-Nous</h3>
+          <ul class="social-links">
+            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+            <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+          </ul>
+        </div>
+      </div>
+      <hr>
+      <p class="copy">© 2023 Red Store. Tous droits réservés.</p>
+    </div>
+  </div>
+  <script src="rellax.min.js"></script>
+</body>
+</html>

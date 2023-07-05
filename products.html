@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Products - Sunu Mbay</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,200&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  <style>
+    #MenuItems li a {
+      color: #030303; 
+    }
+  </style>
+  </head>
+  <body style="background: radial-gradient(circle, #e2e0e0, #7eb697);">
+    <div class="container">
+      <div class="navbar">
+        <div class="logo">
+          <a href="index.html">
+            <img src="images/logo1.png" alt="" width="125px"
+          /></a>
+        </div>
+        <nav>
+          <ul id="MenuItems">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="products.html">Produits</a></li>
+            <li><a href="about.html">A Propos</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="account.html">Compte</a></li>
+            <!-- TODo: 22:20 -->
+          </ul>
+        </nav>
+        <a href="cart.html"
+          ><img src="images/cart.png" alt="" width="30px" height="30px"
+        /></a>
+        <img
+          src="images/menu.png"
+          alt=""
+          class="menu-icon"
+          onclick="menutoggle()"
+        />
+      </div>
+    </div>
+
+    <div class="small-container">
+      <div class="row row-2">
+        <h2>Tous les Produits</h2>
+        <select name="" id="">
+          <option value="">Tri par défaut</option>
+          <option value="">Tri par Prix</option>
+          <option value="">Tri par Popularité</option>
+          <option value="">Tri par Notation</option>
+          <option value="">Tri par Vente</option>
+        </select>
+      </div>
+
+      <div class="row">
+        <div class="col-4 product-item" data-page="1"> <a href="product-details.html">
+          <img src="images/produit-1.png" alt="" /> </a>
+          <h4>Haricots Verts</h4>
+          <div class="rating">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-o"></i>
+          </div>
+          <p>F CFA 50.00</p>
+        </div>
+
+        <div class="col-4 product-item" data-page="1"> <a href="product-details-tomate.html">
+          <img src="images/produit-2.png" alt="" /> </a>
+          <h4>Tomates</h4>
+          <div class="rating">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-half-o"></i>
+            <i class="fa fa-star-o"></i>
+          </div>
+          <p>F CFA 50.00</p>
+        </div>
+
+        <div class="col-4 product-item" data-page="1"> <a href="product-details-lait.html">
+          <img src="images/produit-3.png" alt="" /></a>
+          <h4>Lait de Vache</h4>
+          <div class="rating">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-half-o"></i>
+          </div>
+          <p>F CFA 50.00</p>
+        </div>
+        <div class="col-4 product-item" data-page="1"> <a href="product-details-poulets.html">
+          <img src="images/produit-4.png" alt="" /></a>
+          <h4>Poulets</h4>
+          <div class="rating">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-o"></i>
+          </div>
+          <p>F CFA 50.00</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-4 product-item" data-page="1"><a href="product-details.html">
+          <img src="images/produit-5.png" alt="" /></a>
+          <h4>Viande de Boeuf</h4>
+          <div class="rating">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-o"></i>
+          </div>
+          <p>F CFA 50.00</p>
+        </div>
+
+        <div class="col-4 product-item" data-page="1"><a href="product-details.html">
+          <img src="images/produit-6.png" alt="" /></a>
+          <h4>Noix de Cajou</h4>
+          <div class="rating">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-half-o"></i>
+            <i class="fa fa-star-o"></i>
+          </div>
+          <p>F CFA 50.00</p>
+        </div>
+
+        <div class="col-4 product-item" data-page="1"><a href="product-details.html">
+          <img src="images/produit-7.png" alt="" /></a>
+          <h4>Papayes</h4>
+          <div class="rating">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-half-o"></i>
+          </div>
+          <p>F CFA 50.00</p>
+        </div>
+        <div class="col-4 product-item" data-page="1"><a href="product-details.html">
+          <img src="images/produit-8.png" alt="" /></a>
+          <h4>Oeufs</h4>
+          <div class="rating">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-o"></i>
+          </div>
+          <p>F CFA 50.00</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-4 product-item" data-page="1"><a href="product-details.html">
+          <img src="images/produit-9.png" alt="" /></a>
+          <h4>Maïs</h4>
+          <div class="rating">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-o"></i>
+          </div>
+          <p>F CFA 50.00</p>
+        </div>
+
+        <div class="col-4 product-item" data-page="1"><a href="product-details.html">
+          <img src="images/produit-10.png" alt="" /></a>
+          <h4>Maadd</h4>
+          <div class="rating">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-half-o"></i>
+            <i class="fa fa-star-o"></i>
+          </div>
+          <p>F CFA 50.00</p>
+        </div>
+
+        <div class="col-4 product-item" data-page="1"><a href="product-details.html">
+          <img src="images/produit-11.png" alt="" /></a>
+          <h4>Bouye</h4>
+          <div class="rating">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-half-o"></i>
+          </div>
+          <p>F CFA 50.00</p>
+        </div>
+        <div class="col-4 product-item" data-page="1"><a href="product-details.html">
+          <img src="images/produit-12.png" alt="" /></a>
+          <h4>Carottes</h4>
+          <div class="rating">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-o"></i>
+          </div>
+          <p>F CFA 50.00</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-4 product-item" data-page="1"><a href="product-details.html">
+          <img src="images/produit-13.jpg" alt="" /></a>
+          <h4>Oignons</h4>
+          <div class="rating">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-o"></i>
+          </div>
+          <p>F CFA 50.00</p>
+        </div>
+
+        <div class="col-4 product-item" data-page="1"><a href="product-details.html">
+          <img src="images/produit-14.jpg" alt="" /></a>
+          <h4>Mil</h4>
+          <div class="rating">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-half-o"></i>
+            <i class="fa fa-star-o"></i>
+          </div>
+          <p>F CFA 50.00</p>
+        </div>
+
+        <div class="col-4 product-item" data-page="1"><a href="product-details.html">
+          <img src="images/produit-15.png" alt="" /></a>
+          <h4>Haricots Blancs</h4>
+          <div class="rating">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-half-o"></i>
+          </div>
+          <p>F CFA 50.00</p>
+        </div>
+        <div class="col-4 product-item" data-page="1"><a href="product-details.html">
+          <img src="images/produit-16.png" alt="" /></a>
+          <h4>Petits Pois</h4>
+          <div class="rating">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-o"></i>
+          </div>
+          <p>F CFA 50.00</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-4 product-item" data-page="1"><a href="product-details.html">
+          <img src="images/produit-17.jpg" alt="" /></a>
+          <h4>Niébé</h4>
+          <div class="rating">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-o"></i>
+          </div>
+          <p>F CFA 50.00</p>
+        </div>
+
+        <div class="col-4 product-item" data-page="1"><a href="product-details.html">
+          <img src="images/produit-18.jpg" alt="" /></a>
+          <h4>Lentilles</h4>
+          <div class="rating">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-half-o"></i>
+            <i class="fa fa-star-o"></i>
+          </div>
+          <p>F CFA 50.00</p>
+        </div>
+
+        <div class="col-4 product-item" data-page="1"><a href="product-details.html">
+          <img src="images/produit-19.png" alt="" /></a>
+          <h4>Viande de Mouton</h4>
+          <div class="rating">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-half-o"></i>
+          </div>
+          <p>F CFA 50.00</p>
+        </div>
+        <div class="col-4 product-item" data-page="1"><a href="product-details.html">
+          <img src="images/produit-20.png" alt="" /></a>
+          <h4>Bissap</h4>
+          <div class="rating">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-o"></i>
+          </div>
+          <p>F CFA 50.00</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-4 product-item" data-page="2"><a href="product-details.html">
+          <img src="images/produit-21.png" alt="" /></a>
+          <h4>Pêche</h4>
+          <div class="rating">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-o"></i>
+          </div>
+          <p>F CFA 50.00</p>
+        </div>
+
+        <div class="col-4 product-item" data-page="2"><a href="product-details.html">
+          <img src="images/produit-22.png" alt="" /></a>
+          <h4>Fruit de la passion</h4>
+          <div class="rating">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-half-o"></i>
+            <i class="fa fa-star-o"></i>
+          </div>
+          <p>F CFA 50.00</p>
+        </div>
+
+        <div class="col-4 product-item" data-page="2"><a href="product-details.html">
+          <img src="images/produit-23.png" alt="" /></a>
+          <h4>Framboises</h4>
+          <div class="rating">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-half-o"></i>
+          </div>
+          <p>F CFA 50.00</p>
+        </div>
+        <div class="col-4 product-item" data-page="2"><a href="product-details.html">
+          <img src="images/produit-24.png" alt="" /></a>
+          <h4>Pastèque</h4>
+          <div class="rating">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-o"></i>
+          </div>
+          <p>F CFA 50.00</p>
+        </div>
+      </div>
+
+      <div class="pagination-container">  
+       <div class="page-btn">
+         <span onclick="previousPage()">&#8592;</span>
+         <span onclick="goToPage(1)">1</span>
+         <span onclick="goToPage(2)">2</span>
+         <span onclick="goToPage(3)">3</span>
+         <span onclick="goToPage(4)">4</span>
+         <span onclick="nextPage()">&#8594;</span>
+       </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="footer-col-1">
+            <h3>Download Our App</h3>
+            <p>
+              Download App for Android <br />
+              and ios mobile phone
+            </p>
+            <div class="app-logo">
+              <img src="images/play-store.png" alt="" />
+              <img src="images/app-store.png" alt="" />
+            </div>
+          </div>
+          <div class="footer-col-2">
+            <img src="images/Logo2.png" alt="" />
+            <p>
+              Lorem, ipsum dolor sit amet consectetur <br />adipisicing elit.
+              Porro, eum?
+            </p>
+          </div>
+          <div class="footer-col-3">
+            <h3>Useful Links</h3>
+            <ul>
+              <li>Coupons</li>
+              <li>Blog Post</li>
+              <li>Return Policy</li>
+              <li>Join Affiliate</li>
+            </ul>
+          </div>
+
+          <div class="footer-col-4">
+            <h3>Follow us</h3>
+            <ul>
+              <li>Facebook</li>
+              <li>Twitter</li>
+              <li>Instagram</li>
+              <li>YouTube</li>
+            </ul>
+          </div>
+        </div>
+        <hr />
+        <p class="copyright">Copyright 2020 - introidx</p>
+      </div>
+    </div>
+    <!-- JS for Toggle menu -->
+    <script>
+      var MenuItems = document.getElementById("MenuItems");
+
+      MenuItems.style.maxHeight = "0px";
+
+      function menutoggle() {
+        if (MenuItems.style.maxHeight == "0px") {
+          MenuItems.style.maxHeight = "200px";
+        } else {
+          MenuItems.style.maxHeight = "0px";
+        }
+      }
+      var currentPage = 1;
+      var productsPerPage = 12;
+      var totalPages = Math.ceil(document.getElementsByClassName('product-item').length / productsPerPage);
+
+      function previousPage() {
+        if (currentPage > 1) {
+          currentPage--;
+          updatePagination();
+        }
+      }
+
+      function nextPage() {
+        if (currentPage < totalPages) {
+          currentPage++;
+          updatePagination();
+        }
+      }
+
+      function goToPage(page) {
+        currentPage = page;
+        updatePagination();
+      }
+
+      function updatePagination() {
+        // Mettez à jour l'apparence de la pagination en fonction de la page actuelle
+        var spans = document.getElementsByClassName("pagination-container")[0].getElementsByTagName("span");
+        for (var i = 1; i <= totalPages; i++) {
+          if (i === currentPage) {
+            spans[i-1].classList.add("active");
+          } else {
+            spans[i-1].classList.remove("active");
+          }
+        }
+
+        // Affichez les produits correspondant à la page actuelle
+        var productItems = document.getElementsByClassName('product-item');
+        for (var j = 0; j < productItems.length; j++) {
+          var productItem = productItems[j];
+          var page = parseInt(productItem.getAttribute('data-page'));
+          if (page === currentPage) {
+            productItem.style.display = 'block';
+          } else {
+            productItem.style.display = 'none';
+          }
+        }
+      }
+
+      // Initialisation de la pagination
+      updatePagination();
+
+      window.onload = function() {
+      // Vérifier si l'utilisateur est connecté
+        if (localStorage.getItem('loggedIn') === 'true') {
+          // Si l'utilisateur est connecté, afficher le bouton de déconnexion
+          let logoutButton = document.createElement('button');
+          logoutButton.textContent = 'Déconnexion';
+          logoutButton.onclick = handleLogout;
+          document.body.appendChild(logoutButton);
+        }
+      }
+
+      function handleLogout() {
+        // Supprimer l'état de connexion du localStorage
+        localStorage.removeItem('loggedIn', 'false');
+        // Rediriger l'utilisateur vers la page de connexion
+      window.location.href = "account.html";
+      }
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sunu Mbay | Ecommerce Website Design</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,200&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <div class="header">
+      <div class="container">
+        <div class="navbar">
+          <div class="logo">
+            <a href="index.html">
+              <img src="images/logo1.png" alt="" width="125px"
+            /></a>
+          </div>
+          <nav>
+            <ul id="MenuItems">
+              <li><a href="index.html">Accueil</a></li>
+              <li><a href="products.html">Produits</a></li>
+              <li><a href="about.html">A Propos</a></li>
+              <li><a href="contact.html">Contact</a></li>
+              <li><a href="account.html">Compte</a></li>
+              <!-- TODo: 22:20 -->
+            </ul>
+          </nav>
+          <a href="cart.html"
+            ><img src="images/cart.png" alt="" width="30px" height="30px"
+          /></a>
+          <img
+            src="images/menu.png"
+            alt=""
+            class="menu-icon"
+            onclick="menutoggle()"
+          />
+        </div>
+        <div class="search-container">
+          <input type="text" id="searchInput" placeholder="Rechercher..." />
+          <button type="submit" onclick="search()">Rechercher</button>
+        </div>
+        <div id="gallery">
+          <!-- Vos éléments de galerie ici -->
+          <div class="item" data-url="product-details.html">Haricots Verts</div>
+          <div class="item" data-url="product-details-tomate.html">Tomates</div>
+          <div class="item" data-url="product-details-lait.html">Lait de Vache</div>
+          <div class="item" data-url="product-details-poulets.html">Poulets</div>
+          <div class="item" data-url="product-details.html">Viande de Boeuf</div>
+          <div class="item">Noix de Cajou</div>
+          <div class="item">Papayes</div>
+          <div class="item">Oeufs</div>
+          <div class="item">Maïs</div>
+          <div class="item">Maad</div>
+          <div class="item">Bouye</div>
+          <div class="item">Carottes</div>
+          <div class="item">Oignons</div>
+          <div class="item">Mil</div>
+          <div class="item">Haricots Blancs</div>
+          <div class="item">Petits Pois</div>
+          <div class="item">Niébé</div>
+          <div class="item">Lentilles</div>
+          <div class="item">Viande de Mouton</div>
+          <div class="item">Bissap</div>
+          <div class="item">Pêche</div>
+          <div class="item">Fruit de le passion</div>
+          <div class="item">Framboises</div>
+          <div class="item">Pastèque</div>
+        </div>  
+
+        <div class="row">
+          <div class="col-2">
+            <h1 class="element">
+              Une vie saine commence par<br />
+              des produits naturels!
+            </h1>
+            <p>
+              Les aliments biologiques sont des aliments produits selon des méthodes conformes.<br />
+              Avec des normes des fermes bio.
+            </p>
+            <a href="products.html" class="btn">Explorer maintenant &#8594;</a>
+          </div>
+          <div class="col-2">
+           <div class="row slideshow-container">
+            <div class="mySlides">
+              <img src="images/images3.png" alt="Slide 1"  width="600px"/>
+              <div class="text">Fruits et Légumes</div>
+            </div>
+            <div class="mySlides">
+              <img src="images/image3.png" alt="Slide 2" />
+              <div class="text">Légumineuses</div>
+            </div>
+            <div class="mySlides">
+              <img src="images/image4.png" alt="Slide 3" />
+              <div class="text">Céréales</div>
+            </div>
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+           </div>
+           <br />
+           <div class="dot-container">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+           </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!----- Featurd Categories--------->
+    <div class="categories">
+      <div class="small-container">
+        <h2 class="title">Catégories</h2>
+        <div class="row">
+          <div class="col-3">
+            <img src="images/category-11.png" alt="" />
+            <h3> Fruits et Légumes </h3>
+            <h5> Découvrez notre sélection de fruits et légumes frais,
+              cueillis à la perfection pour vous offrir une explosion de saveurs dans chaque bouchée.</h5>
+          </div>
+          <div class="col-3">
+            <img src="images/category-22.png" alt="" />
+            <h3> Céréales </h3>
+            <h5> Plongez dans un monde de grains délicieux et nutritifs avec notre gamme de céréales 
+              nous avons tout ce dont vous avez besoin pour un mode de vie équilibré et énergétique.
+            </h5>
+          </div>
+          <div class="col-3">
+            <img src="images/category-33.png" alt="" />
+            <h3>Produits d'origine animale</h3>
+            <h5> Découvrez notre sélection exquise de produits d'origine animale. Faites
+                l'expérience d'une alimentation de première qualité et soutenez une agriculture durable..
+            </h5>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!----- Featurd Products--------->
+    <div class="small-container">
+      <h2 class="title">Produits en Vedette</h2>
+      <div class="row">
+        <div class="col-4">
+          <a href="product-details.html">
+            <img src="images/produit-1.png" alt=""
+          /></a>
+          <h4>Haricots Verts</h4>
+          <div class="rating">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-o"></i>
+          </div>
+          <p>F CFA 50.00</p>
+        </div>
+
+        <div class="col-4">
+          <a href="product-details-tomate.html">
+            <img src="images/produit-2.png" alt="" /></a>
+          <h4>Tomates</h4>
+          <div class="rating">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-half-o"></i>
+            <i class="fa fa-star-o"></i>
+          </div>
+          <p> F CFA 50.00</p>
+        </div>
+
+        <div class="col-4">
+          <a href="product-details-lait.html"> 
+            <img src="images/produit-3.png" alt="" /></a> 
+          <h4>Lait de vache</h4>
+          <div class="rating">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-half-o"></i>
+          </div>
+          <p>F CFA 50.00</p>
+        </div>
+        <div class="col-4">
+          <a href="product-details-poulets.html">
+            <img src="images/produit-4.png" alt="" /></a>
+          <h4>Poulets</h4>
+          <div class="rating">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-o"></i>
+          </div>
+          <p> F CFA 50.00</p>
+        </div>
+      </div>
+      <h2 class="title">Les Plus Récents</h2>
+      <div class="row">
+        <div class="col-4">
+          <img src="images/produit-5.png" alt="" />
+          <h4>Viande de Boeuf</h4>
+          <div class="rating">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-o"></i>
+          </div>
+          <p> F CFA 50.00</p>
+        </div>
+
+        <div class="col-4">
+          <img src="images/produit-6.png" alt="" />
+          <h4>Noix de Cajou</h4>
+          <div class="rating">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-half-o"></i>
+            <i class="fa fa-star-o"></i>
+          </div>
+          <p>F CFA 50.00</p>
+        </div>
+
+        <div class="col-4">
+          <img src="images/produit-7.png" alt="" />
+          <h4>Papayes</h4>
+          <div class="rating">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-half-o"></i>
+          </div>
+          <p>F CFA 50.00</p>
+        </div>
+        <div class="col-4">
+          <img src="images/produit-8.png" alt="" />
+          <h4>Oeufs</h4>
+          <div class="rating">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-o"></i>
+          </div>
+          <p>F CFA 50.00</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-4">
+          <img src="images/produit-9.png" alt="" />
+          <h4>Maïs</h4>
+          <div class="rating">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-o"></i>
+          </div>
+          <p>F CFA 50.00</p>
+        </div>
+
+        <div class="col-4">
+          <img src="images/produit-10.png" alt="" />
+          <h4>Maadd</h4>
+          <div class="rating">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-half-o"></i>
+            <i class="fa fa-star-o"></i>
+          </div>
+          <p>F CFA 50.00</p>
+        </div>
+
+        <div class="col-4">
+          <img src="images/produit-11.png" alt="" />
+          <h4>Bouye</h4>
+          <div class="rating">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-half-o"></i>
+          </div>
+          <p>F CFA 50.00</p>
+        </div>
+        <div class="col-4">
+          <img src="images/produit-12.png" alt="" />
+          <h4>Carottes</h4>
+          <div class="rating">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-o"></i>
+          </div>
+          <p>F CFA 50.00</p>
+        </div>
+      </div>
+    </div>
+
+    <!-------- Offer --------->
+    <div class="offer">
+      <div class="small-container">
+        <div class="row">
+          <div class="col-2">
+            <img src="images/exclusive1.png" class="offer-img" alt="" />
+          </div>
+          <div class="col-2">
+            <h2 class="title">Tendance du moment</h2>
+            <p> Disponible en quantité limitée</p>
+            <h1>Fraises</h1>
+            <small
+              >"La fraise, délicieux fruit rouge gorgé de douceur et de vitalité, regorge de bienfaits pour notre santé..
+              Riche en vitamines et en antioxydants, elle renforce notre système immunitaire et contribue à une bonne digestion.
+            </small>
+            <a href="product-details-offer.html" class="btn">Achetez maintenant &#8594;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="chat-container">
+      <div id="chat-messages"></div>
+      <div id="chat-input">
+        <input type="text" id="message-input" placeholder="Entrez votre message..." />
+        <button id="send-button">Envoyer</button>
+      </div>
+    </div>    
+
+    <!------ Testimonial  ------>
+    <div class="testimonial">
+      <div class="small-container">
+        <div class="row">
+          <div class="col-3">
+            <i class="fa fa-quote-left"></i>
+
+            <p>
+              Je suis agréablement surprise par la variété de fruits et légumes proposés par 
+              ces vendeurs. J'ai pu trouver des produits locaux et biologiques, ce qui était  
+              vraiment important pour moi. Je continuerai à soutenir les agriculteurs.
+            </p>
+            <div class="rating">
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star-o"></i>
+            </div>
+            <img src="images/user1.png" alt="" />
+            <h3>Sophie SARR</h3>
+          </div>
+
+          <div class="col-3">
+            <i class="fa fa-quote-left"></i>
+
+            <p>
+              Les fruits et légumes que j'ai achetés étaient d'une qualité exceptionnelle !  
+              Ils étaient frais, juteux et délicieusement savoureux.
+              Je suis vraiment satisfait de mon achat et je recommande vivement ces produits. 
+            </p>
+            <div class="rating">
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star-o"></i>
+            </div>
+            <img src="images/user2.png" alt="" />
+            <h3>Omar FALL</h3>
+          </div>
+
+          <div class="col-3">
+            <i class="fa fa-quote-left"></i>
+
+            <p>
+              Je suis ravie d'avoir choisi ce marché pour mes achats de fruits et légumes.
+              Non seulement j'ai bénéficié d'une large gamme de produits frais, mais le service
+              était également excellent et j'ai apprécié l'attention portée à la qualité des produits.
+            </p>
+            <div class="rating">
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star-o"></i>
+            </div>
+            <img src="images/user3.png" alt="" />
+            <h3>Oumy DIA</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Brands -->
+
+    <div class="brands">
+      <div class="small-container">
+        <div class="row">
+          <div class="col-5">
+            <img src="images/logo-ba-agri.png" alt="" />
+          </div>
+          <div class="col-5">
+            <img src="images/logo-unapas.png" alt="" />
+          </div>
+          <div class="col-5">
+            <img src="images/logo-cncr.png" alt="" />
+          </div>
+          <div class="col-5">
+            <img src="images/logo-unacois-1.png" alt="" />
+          </div>
+          <div class="col-5">
+            <img src="images/logo-unacois-2.png" alt="" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="footer-col-1">
+            <h3>Télécharger Votre App</h3>
+            <p>
+              Télécharger l'App pour les <br />
+              tépléphones Android et Ios.
+            </p>
+            <div class="app-logo">
+              <img src="images/play-store.png" alt="" />
+              <img src="images/app-store.png" alt="" />
+            </div>
+          </div>
+          <div class="footer-col-2">
+            <img src="images/logo2.png" alt="" />
+            <p>
+              Nourrissez votre santé avec la puissance <br /> des produits agricoles ! 
+              
+            </p>
+          </div>
+          <div class="footer-col-3">
+            <h3>Liens Utiles</h3>
+            <ul>
+              <li>Coupons</li>
+              <li>Blog Post</li>
+              <li>Return Policy</li>
+              <li>Join Affiliate</li>
+            </ul>
+          </div>
+
+          <div class="footer-col-4">
+            <h3>Nous suivre</h3>
+            <ul>
+              <li>Facebook</li>
+              <li>Twitter</li>
+              <li>Instagram</li>
+              <li>YouTube</li>
+            </ul>
+          </div>
+        </div>
+        <hr />
+        <p class="copyright">Copyright 2023 - arcadix</p>
+      </div>
+    </div>
+    <!-- JS for Toggle menu -->
+    <script>
+      var MenuItems = document.getElementById("MenuItems");
+
+      MenuItems.style.maxHeight = "0px";
+
+      function menutoggle() {
+        if (MenuItems.style.maxHeight == "0px") {
+          MenuItems.style.maxHeight = "200px";
+        } else {
+          MenuItems.style.maxHeight = "0px";
+        }
+      }
+      var slideIndex = 1;
+showSlides(slideIndex);
+
+// Fonction pour passer à la diapositive suivante
+function nextSlide() {
+  showSlides((slideIndex += 1));
+}
+
+// Fonction pour passer à la diapositive précédente
+function previousSlide() {
+  showSlides((slideIndex -= 1));
+}
+
+// Fonction pour afficher une diapositive spécifique
+function currentSlide(n) {
+  showSlides((slideIndex = n));
+}
+
+// Fonction pour afficher les diapositives
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+
+  // Réinitialiser l'index de la diapositive si on atteint la fin ou le début
+  if (n > slides.length) {
+    slideIndex = 1;
+  }
+  if (n < 1) {
+    slideIndex = slides.length;
+  }
+
+  // Masquer toutes les diapositives
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+
+  // Retirer la classe "active" des points de navigation
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+
+  // Afficher la diapositive actuelle et ajouter la classe "active" au point de navigation correspondant
+  slides[slideIndex - 1].style.display = "block";
+  dots[slideIndex - 1].className += " active";
+}
+
+        // Définir l'intervalle de défilement automatique (par exemple, toutes les 3 secondes)
+        var slideshowInterval = setInterval(nextSlide, 3000);
+
+      // Code JavaScript
+      function search() {
+        var searchInput = document.getElementById("searchInput").value.toLowerCase();
+        var galleryItems = document.getElementsByClassName("item");
+
+         var found = false;
+         for (var i = 0; i < galleryItems.length; i++) {
+          var itemText = galleryItems[i].innerText.toLowerCase();
+          if (itemText.includes(searchInput)) {
+            galleryItems[i].style.display = "block";
+            found = true;
+            // Récupérer l'URL de la page du produit
+            var productURL = galleryItems[i].getAttribute("data-url");
+
+            // Rediriger vers la page du produit
+            window.location.href = productURL;
+            // Sortir de la boucle après la redirection
+            return;
+          } else {
+            galleryItems[i].style.display = "none";
+          }
+        }
+
+        if (!found) {
+          var gallery = document.getElementById("gallery");
+          var notFoundMessage = document.createElement("div");
+          notFoundMessage.innerText = "Ce produit n'existe pas encore dans la galerie.";
+          notFoundMessage.classList.add("not-found-message");
+          gallery.appendChild(notFoundMessage);
+        } else {
+          var notFoundMessage = document.querySelector(".not-found-message");
+          if (notFoundMessage) {
+            notFoundMessage.remove();
+          }
+        }
+      }
+      // Sélection du champ de recherche
+      var searchInput = document.getElementById('searchInput');
+
+      // Ajout du gestionnaire d'événements pour l'événement de pression de touche
+      searchInput.addEventListener('keydown', function(event) {
+        // Vérification si la touche pressée est la touche "Enter"
+        if (event.keyCode === 13) {
+          // Récupération de la valeur saisie dans le champ de recherche
+          var searchQuery = searchInput.value;
+
+          // Appel de la fonction de recherche avec la valeur saisie
+          search();
+    
+          // Empêcher le rechargement de la page
+          event.preventDefault();
+        }
+      });
+      window.onload = function() {
+          // Vérifier si l'utilisateur est connecté
+        if (localStorage.getItem('loggedIn') === 'true') {
+          // Si l'utilisateur est connecté, afficher le bouton de déconnexion
+          let logoutButton = document.createElement('button');
+          logoutButton.textContent = 'Déconnexion';
+          logoutButton.onclick = handleLogout;
+          document.body.appendChild(logoutButton);
+        }
+      }
+        // Récupérer les éléments du chat
+      const chatContainer = document.getElementById('chat-container');
+      const chatMessages = document.getElementById('chat-messages');
+      const messageInput = document.getElementById('message-input');
+      const sendButton = document.getElementById('send-button');
+
+      // Événement de clic sur le chat pour activer/désactiver l'agrandissement
+      chatContainer.addEventListener('click', function() {
+      chatContainer.classList.toggle('active');
+      });
+        // Fonction pour ajouter un message dans le chat
+      function addMessage(message) {
+        const messageElement = document.createElement('div');
+        messageElement.classList.add('message');
+        messageElement.textContent = message;
+        chatMessages.appendChild(messageElement);
+      }
+
+        // Événement de clic sur le bouton d'envoi
+      sendButton.addEventListener('click', function() {
+        const message = messageInput.value;
+        if (message.trim() !== '') {
+          addMessage(message);
+          messageInput.value = '';
+        }
+      });
+
+        // Événement de pression de la touche "Entrée" dans le champ de saisie du message
+      messageInput.addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+          const message = messageInput.value;
+          if (message.trim() !== '') {
+            addMessage(message);
+            messageInput.value = '';
+          }
+        }
+      });
+
+
+    </script>
+  </body>
+</html>

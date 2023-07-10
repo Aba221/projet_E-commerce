@@ -64,7 +64,7 @@
             </tr>
             <tr>
               <td><a href="products.html">Continuer les achats</a></td>
-              <td><a href="#">Payer</a></td>
+              <td><a href="paiement.html" onclick="storeTotalAmount()">Payer</a></td>
             </tr>
           </table>
         </div>
@@ -103,8 +103,7 @@
           <div class="footer-col-2">
             <img src="images/Logo2.png" alt="" />
             <p>
-              Lorem, ipsum dolor sit amet consectetur <br />adipisicing elit.
-              Porro, eum?
+              Nourrissez votre santé avec la puissance <br /> des produits agricoles !
             </p>
           </div>
           <div class="footer-col-3">
@@ -289,6 +288,22 @@
       }
     }
 
+    // Fonction pour stocker le montant total dans le localStorage
+    function storeTotalAmount() {
+      const totalElement = document.getElementById('total');
+      const totalAmount = totalElement.textContent.trim();
+      localStorage.setItem('totalAmount', totalAmount);
+    }
+
+    window.addEventListener('DOMContentLoaded', function() {
+    // Récupérer le montant total à partir du localStorage et l'afficher dans la page "cart.html"
+      const totalElement = document.getElementById('total');
+      const storedTotalAmount = localStorage.getItem('totalAmount');
+      if (storedTotalAmount) {
+        totalElement.textContent = storedTotalAmount;
+      }
+    });
+
     // Mise à jour du statut de connexion dans l'interface utilisateur
     function updateLoginStatus() {
       const loginButton = document.getElementById('login-button');
@@ -316,10 +331,11 @@
       // Supprimer le statut de connexion
       localStorage.removeItem('loggedIn');
 
-      updateCartDisplay();
-
       loggedIn = false; // Réinitialise le statut de connexion
+
       updateLoginStatus(); // Met à jour l'interface utilisateur pour refléter le nouveau statut de connexion
+      updateCartDisplay();
+      
       console.log("Utilisateur déconnecté");
     }
 

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Moyens de Paiement</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,200&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+    body {
+      background-image: url(images/background7.png);
+      background-repeat: no-repeat;
+      background-size: cover;
+      
+    }
+    
+    /* Styles pour la fenêtre modale */
+    .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.6);
+    }
+
+    .modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #999999;
+    width: 80%;
+    max-width: 600px;
+    }
+
+    .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    }
+    h2{
+      font-family:'Times New Roman', Times, serif
+    }
+
+    /* Styles pour le formulaire de paiement */
+    
+    .payment-form {
+      max-width: 600px;
+      margin: 10% auto;
+      background-color: #fefefe;
+      padding: 20px;
+      border: 1px solid #999999;
+    }
+
+    .payment-form label {
+      font-weight:light;
+    }
+
+    .payment-form input[type="text"],
+    .payment-form input[type="email"],
+    .payment-form input[type="tel"],
+    .payment-form button[type="button"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .payment-form button[type="button"] {
+      background-color: #4caf50;
+      color: white;
+      cursor: pointer;
+    }
+
+    .payment-form button[type="button"]:hover {
+      background-color: #027c06;
+    }
+
+    .total-amount {
+      font-size: 20px;
+      margin-top: 20px;
+    }
+
+    @media only screen and (max-width: 600px) {
+      .payment-form input[type="checkbox"],
+      .payment-form label[for="acceptTerms"] {
+        display: block;
+        margin-top: 10px;
+      }
+    }
+
+    .pay {
+      display: flex;
+      justify-content: center;
+    }
+
+    a {
+      color: blue;
+    }
+    </style>
+  </head>
+  
+  <body>      
+
+        <!-- HTML de la fenêtre modale de paiement -->
+    
+        
+        <form id="payment-form" class="payment-form"> 
+          <h2>Information</h2> 
+          <label for="email">Email</label>
+          <input type="email" id="email" required> <br></br>
+      
+          <h2>Adresse de livraison</h2> 
+          <label for="firstName">Prénom</label>
+          <input type="text" id="firstName" required> 
+      
+          <label for="lastName">Nom</label>
+          <input type="text" id="lastName" required> 
+      
+          <label for="country">Pays ou Région</label>
+          <input type="text" id="country" required>
+      
+          <label for="phoneNumber">Numéro de téléphone</label>
+          <input type="tel" id="phoneNumber" required> <br></br>
+      
+          <h2>Paiement</h2> 
+          
+          <input type="radio" id="paypal" name="paymentMethod" value="paypal">
+          <label for="paypal">Monnaie Electronique</label><br> <br>
+
+          <input type="radio" id="creditCard" name="paymentMethod" value="creditCard">
+          <label for="creditCard">Carte de crédit</label><br> <br>
+
+          <input type="radio" id="bankTransfer" name="paymentMethod" value="bankTransfer">
+          <label for="bankTransfer">Virement bancaire</label><br> <br>
+
+          <input type="checkbox" id="acceptTerms" class="checkbox" required> 
+          <label for="acceptTerms" class="checkbox-label">J'ai lu et j'accepte les <a href="#" id="open-terms"> conditions d'utilisation</a> </label>
+          <br> <br>
+
+          <div class="total-amount">
+            Montant total à payer : <span id="total-amount-value"></span>
+          </div>
+
+          <button type="button" id="valider-paiement">Procéder au paiement</button>
+          <a href="products.html" class="pay">Annuler le paiement</a>
+        </form>
+      </div>
+    </div>
+    <div id="terms-modal" class="modal">
+      <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2>Conditions d'utilisation</h2>
+          <p>Bienvenue sur Sunu Mbay.<br> En utilisant ce site, vous acceptez de respecter les conditions d'utilisation suivantes, 
+            que nous nous réservons le droit de modifier à tout moment. <br>
+            1. Propriété intellectuelle <br>
+            Tous les contenus du site Sunu Mbay, y compris les textes, graphiques, logos, images, sont la 
+            propriété exclusive de Sunu Mbay et sont protégés par les lois internationales sur les droits d'auteur. <br>
+            2. Utilisation du site <br>
+            En accédant à Sunu Mbay, vous acceptez de ne pas utiliser le site à des fins illégales ou 
+            interdites par ces conditions d'utilisation. Vous n'êtes pas autorisé à interférer avec le 
+            fonctionnement du site ou à accéder sans autorisation à nos systèmes informatiques. <br>
+            3. Précision des informations <br>
+            Nous nous efforçons d'assurer l'exactitude des informations présentées sur le site. 
+            Cependant, nous ne pouvons garantir que toutes les informations seront à tout moment à
+            jour, complètes et exactes. <br>
+            4. Produits et Services <br>
+            Les produits proposés à la vente sur Sunu Mbay sont décrits et présentés avec la plus 
+            grande exactitude possible. Cependant, si des erreurs ou des omissions se sont produites
+            dans cette présentation, la responsabilité de Sunu Mbay ne pourrait être engagée. <br>
+            5. Commandes et livraison <br>
+            Les commandes sont livrées à l'adresse indiquée par le client lors de la commande. Sunu 
+            Mbay fera tout son possible pour respecter les délais de livraison indiqués lors de la 
+            commande. Cependant, Sunu Mbay ne pourra être tenu responsable des conséquences
+            dues à un retard de livraison ou à une perte de colis causée par un tiers ou par vous-même, 
+            ou en raison d'une cause imprévisible et insurmontable constituant un cas de force majeure. <br>
+            6. Responsabilité <br>
+            Sunu Mbay ne peut être tenu responsable des dommages de toute nature, tant matériels 
+            qu'immatériels ou corporels, qui pourraient résulter d'un mauvais fonctionnement ou de la
+            mauvaise utilisation des produits vendus. La responsabilité de Sunu Mbay sera, en tout état 
+            de cause, limitée au montant de la commande. <br>
+            7. Modifications des conditions <br>
+            Sunu Mbay se réserve le droit de modifier ces conditions d'utilisation à tout moment. Les 
+            modifications seront effectives dès leur mise en ligne sur le site. <br>
+            Pour toute question ou demande d'information, veuillez nous contacter.
+          </p>
+      </div> 
+    </div>
+
+    <script>
+      // Obtenez la fenêtre modale et le bouton "Valider le paiement"
+      const openModalButton = document.getElementById("valider-paiement");
+      const termsCheckbox = document.getElementById("acceptTerms");
+
+      // Obtenez la fenêtre modale des conditions et le bouton pour ouvrir cette fenêtre modale
+      const termsModal = document.getElementById("terms-modal");
+      const openTermsButton = document.getElementById("open-terms");
+      const closeTermsButton = termsModal.querySelector(".close");
+
+
+      // Fonction pour ouvrir la fenêtre modale des conditions
+      function openTermsModal() {
+        termsModal.style.display = "block";
+      } 
+      // Fonction pour fermer la fenêtre modale des conditions
+      function closeTermsModal() {
+        termsModal.style.display = "none";
+      }
+
+      // Attachez les gestionnaires d'événements aux boutons
+      openTermsButton.addEventListener("click", function(event) {
+        event.preventDefault();
+        openTermsModal();
+      });
+      closeTermsButton.addEventListener("click", closeTermsModal);
+
+      // Empêcher la fermeture de la fenêtre modale lorsque l'utilisateur clique en dehors de celle-ci
+      window.addEventListener("click", function(event) {
+        if (event.target === termsModal) {
+          closeTermsModal();
+        }
+      });
+
+      // Gestionnaire d'événement pour le clic sur le bouton "Procéder au paiement"
+      openModalButton.addEventListener("click", function(event) {
+        // Vérifie si la case est cochée
+        if (!termsCheckbox.checked) {
+          alert('Veuillez accepter les conditions de livraison avant de procéder au paiement.');
+          event.preventDefault(); // Empêche l'ouverture de la fenêtre modale
+        } else {
+          openModal();
+        }
+      });
+      // Gestionnaire d'événement pour la soumission du formulaire de paiement
+      const paymentForm = document.getElementById("payment-form");
+      paymentForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        
+        // Ici, vous pouvez ajouter votre logique de traitement du paiement
+        // et effectuer les actions nécessaires (par exemple, envoyer les données à un serveur).
+        // Après cela, vous pouvez fermer la fenêtre modale si nécessaire.
+        closeModal();
+      });
+      
+      // Récupérer le montant total à partir de la page "cart.html"
+      window.addEventListener("DOMContentLoaded", function () {
+        const totalAmountValue = document.getElementById("total-amount-value");
+        const storedTotalAmount = localStorage.getItem('totalAmount');
+        if (storedTotalAmount) {
+          totalAmountValue.textContent = storedTotalAmount;
+        }
+      });
+    </script>
+  </body>
+</html>

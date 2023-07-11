@@ -24,7 +24,7 @@
     /* Styles pour la fenêtre modale */
     .modal {
     display: none;
-    position: fixed;
+    position:relative;
     z-index: 1;
     left: 0;
     top: 0;
@@ -53,6 +53,7 @@
     h3{
       font-family:'Times New Roman', Times, serif;
       text-align: center;
+      text-decoration: underline;
 
     }
 
@@ -82,7 +83,7 @@
       border-color: rgb(1, 36, 36);
     }
     
-    .payment-form button[type="button"] {
+    .payment-form button[type="submit"] {
       background-color: #4caf50;
       color: white;
       cursor: pointer;
@@ -90,7 +91,7 @@
       font-size: 15px;
     }
 
-    .payment-form button[type="button"]:hover {
+    .payment-form button[type="submit"]:hover {
       background-color: #027c06;
     }
 
@@ -125,8 +126,7 @@
   <body>      
 
         <!-- HTML de la fenêtre modale de paiement -->
-    
-        
+      
         <form id="payment-form" class="payment-form"> 
           <h3>Information</h3> 
           <label for="email">Email</label>
@@ -145,7 +145,7 @@
           <label for="phoneNumber">Numéro de téléphone</label>
           <input type="tel" id="phoneNumber" required> <br>
       
-          <h3>Paiement</h3> 
+          <h3>Mode de Paiement</h3> 
           
           <input type="radio" id="paypal" name="paymentMethod" value="paypal">
           <label for="paypal">Monnaie Electronique</label><br> 
@@ -164,11 +164,10 @@
             Montant total à payer : <span id="total-amount-value"></span>
           </div>
 
-          <button type="button" id="valider-paiement">Procéder au paiement</button>
+          <button type="submit" id="valider-paiement">Procéder au paiement</button>
           <a href="products.html" class="pay">Annuler le paiement</a>
         </form>
-      </div>
-    </div>
+
     <div id="terms-modal" class="modal">
       <div class="modal-content">
           <span class="close">&times;</span>
@@ -211,68 +210,197 @@
 
     <script>
       // Obtenez la fenêtre modale et le bouton "Valider le paiement"
+      const modal = document.getElementById("payment-modal");
       const openModalButton = document.getElementById("valider-paiement");
       const termsCheckbox = document.getElementById("acceptTerms");
 
-      // Obtenez la fenêtre modale des conditions et le bouton pour ouvrir cette fenêtre modale
+      // Obtenez la fenêtre modale des conditions et les boutons pour ouvrir/fermer cette fenêtre modale
       const termsModal = document.getElementById("terms-modal");
       const openTermsButton = document.getElementById("open-terms");
       const closeTermsButton = termsModal.querySelector(".close");
 
+      
+      // Fonction pour ouvrir la fenêtre modale de paiement
+      function openModal() {
+        modal.style.display = "block";
+      }      
 
       // Fonction pour ouvrir la fenêtre modale des conditions
       function openTermsModal() {
         termsModal.style.display = "block";
       } 
+
       // Fonction pour fermer la fenêtre modale des conditions
       function closeTermsModal() {
         termsModal.style.display = "none";
       }
 
-      // Attachez les gestionnaires d'événements aux boutons
-      openTermsButton.addEventListener("click", function(event) {
-        event.preventDefault();
-        openTermsModal();
-      });
-      closeTermsButton.addEventListener("click", closeTermsModal);
-
-      // Empêcher la fermeture de la fenêtre modale lorsque l'utilisateur clique en dehors de celle-ci
-      window.addEventListener("click", function(event) {
-        if (event.target === termsModal) {
-          closeTermsModal();
-        }
-      });
-
-      // Gestionnaire d'événement pour le clic sur le bouton "Procéder au paiement"
-      openModalButton.addEventListener("click", function(event) {
-        // Vérifie si la case est cochée
-        if (!termsCheckbox.checked) {
-          alert('Veuillez accepter les conditions de livraison avant de procéder au paiement.');
-          event.preventDefault(); // Empêche l'ouverture de la fenêtre modale
-        } else {
-          openModal();
-        }
-      });
-      // Gestionnaire d'événement pour la soumission du formulaire de paiement
-      const paymentForm = document.getElementById("payment-form");
-      paymentForm.addEventListener("submit", function (event) {
-        event.preventDefault();
-
-        
-        // Ici, vous pouvez ajouter votre logique de traitement du paiement
-        // et effectuer les actions nécessaires (par exemple, envoyer les données à un serveur).
-        // Après cela, vous pouvez fermer la fenêtre modale si nécessaire.
-        closeModal();
-      });
-      
-      // Récupérer le montant total à partir de la page "cart.html"
+      // Attachez le gestionnaire d'événements au chargement du DOM
       window.addEventListener("DOMContentLoaded", function () {
+        // Attachez le gestionnaire d'événements au bouton "Procéder au paiement"
+        openModalButton.addEventListener("click", function (event) {
+          // Vérifie si la case est cochée
+          if (!termsCheckbox.checked) {
+            alert('Veuillez accepter les conditions de livraison avant de procéder au paiement.');
+            event.preventDefault(); // Empêche l'ouverture de la fenêtre modale
+          } else {
+            openModal();
+          }
+        });
+        // Attachez les gestionnaires d'événements aux boutons
+        openTermsButton.addEventListener("click", function(event) {
+          event.preventDefault();
+          openTermsModal();
+        });
+        closeTermsButton.addEventListener("click", closeTermsModal);
+
+        // Empêcher la fermeture de la fenêtre modale lorsque l'utilisateur clique en dehors de celle-ci
+        window.addEventListener("click", function(event) {
+          if (event.target === termsModal) {
+            closeTermsModal();
+          }
+        });
+
+        // Récupérer le montant total à partir de la page "cart.html"
         const totalAmountValue = document.getElementById("total-amount-value");
         const storedTotalAmount = localStorage.getItem('totalAmount');
         if (storedTotalAmount) {
           totalAmountValue.textContent = storedTotalAmount;
         }
+
+        // Gestionnaire d'événement pour la soumission du formulaire de paiement
+        const paymentForm = document.getElementById("payment-form");
+        paymentForm.addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          // Simulation du traitement du paiement
+          const email = document.getElementById("email").value;
+          const firstName = document.getElementById("firstName").value;
+          const lastName = document.getElementById("lastName").value;
+          const country = document.getElementById("country").value;
+          const phoneNumber = document.getElementById("phoneNumber").value;
+          const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
+
+          // Enregistrer le montant total dans localStorage
+          const totalAmountValue = document.getElementById("total-amount-value");
+          localStorage.setItem('totalAmount', totalAmountValue.textContent);
+
+          // Vérifier si le paiement est réussi
+          const success = simulatePayment(paymentMethod); 
+
+          if (success) {
+            // Vider le panier (simuler une action de suppression des éléments du panier)
+            clearCart();
+
+            // Réinitialiser la valeur du montant total
+            totalAmountValue.textContent = '0';
+          
+            // Afficher un message de succès du paiement
+            showPaymentSuccessMessage();
+
+            // Envoyer un email de confirmation
+            sendConfirmationEmail(email);          
+          } else {
+            // Afficher un message d'échec du paiement
+            showPaymentFailureMessage();
+          }
+        });
+
+        // Fonction pour vider le panier (à adapter selon votre implémentation)
+        function clearCart() {
+          // Code pour vider le panier (supprimer les éléments du panier)
+          // Par exemple, vous pouvez utiliser localStorage pour stocker les éléments du panier
+          localStorage.removeItem('cartItems');
+        }
+
+        // Fonction pour réinitialiser les champs du formulaire
+        function resetForm() {
+          document.getElementById("email").value = "";
+          document.getElementById("firstName").value = "";
+          document.getElementById("lastName").value = "";
+          document.getElementById("country").value = "";
+          document.getElementById("phoneNumber").value = "";
+          document.getElementById("acceptTerms").checked = false;
+        }
+
+        // Fonction pour afficher un message de succès du paiement
+        function showPaymentSuccessMessage() {
+          alert("Paiement réussi !");
+          resetForm();
+        }
+
+        // Simulation du traitement du 
+        function simulatePayment(paymentMethod) {
+          const email = document.getElementById("email").value; // Déplacez la récupération de l'email ici
+
+          if (paymentMethod === "paypal") {
+            // Logique de test pour PayPal
+            const success = simulatePayPalPayment();
+            if (success) {
+              showPaymentSuccessMessage();
+              sendConfirmationEmail(email);
+            } else {
+              showPaymentFailureMessage();
+            }
+            return true;
+          } else if (paymentMethod === "creditCard") {
+            // Logique de test pour la carte de crédit
+            const success = simulateCreditCardPayment();
+            if (success) {
+              showPaymentSuccessMessage();
+              sendConfirmationEmail(email);
+            } else {
+              showPaymentFailureMessage();
+            }
+            return false;
+          } else if (paymentMethod === "bankTransfer") {
+            // Logique de test pour le virement bancaire
+            const success = simulateBankTransferPayment();
+            if (success) {
+              showPaymentSuccessMessage();
+              sendConfirmationEmail(email);
+            } else {
+              showPaymentFailureMessage();
+            }
+            return true;
+          }
+        } 
+
+        // Fonction pour simuler le paiement via PayPal
+        function simulatePayPalPayment() {
+          // Simulation réussie
+          return true;
+        }
+  
+        // Fonction pour simuler le paiement par carte de crédit
+        function simulateCreditCardPayment() {
+          // Simulation échouée
+          return false;
+        }
+  
+        // Fonction pour simuler le paiement par virement bancaire
+        function simulateBankTransferPayment() {
+          // Simulation réussie
+          return true;
+        }
+  
+        // Fonction pour afficher un message de succès du paiement
+        function showPaymentSuccessMessage() {
+          alert("Paiement réussi !");
+        }
+  
+        // Fonction pour afficher un message d'échec du paiement
+        function showPaymentFailureMessage() {
+          alert("Le paiement a échoué. Veuillez réessayer.");
+        }
+  
+        // Fonction pour simuler l'envoi d'un email de confirmation
+        function sendConfirmationEmail(email) {
+          // Simulation de l'envoi de l'email de confirmation
+          console.log(`Envoi de l'email de confirmation à ${email}`);
+        }
       });
+
     </script>
   </body>
 </html>

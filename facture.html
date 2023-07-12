@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Facture</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+</head>
+<body>
+  <h1>Facture</h1>
+
+  <div id="invoice-details">
+    <h2>Détails de la facture</h2>
+    <p><strong>Date :</strong> <span id="invoice-date"></span></p>
+    <p><strong>Nom :</strong> <span id="customer-name"></span></p>
+    <p><strong>Email :</strong> <span id="customer-email"></span></p>
+    <p><strong>Produits :</strong></p>
+    <ul id="product-list"></ul>
+    <p><strong>Montant total :</strong> <span id="total-amount"></span></p>
+  </div>
+
+  <button id="download-invoice">Télécharger la facture</button> <br> </br>
+  <a href="index.html" class="back">Revenir à la page d'accueil</a>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Récupérer les données des achats validés depuis le localStorage ou une autre source
+        const purchasedItems = JSON.parse(localStorage.getItem('purchasedItems'));
+
+        // Vérifier si des produits ont été achetés
+        if (purchasedItems && purchasedItems.length > 0) {
+            // Afficher les détails des produits achetés dans la facture
+            const productContainer = document.getElementById('product-list');
+            purchasedItems.forEach(function(item) {
+                const listItem = document.createElement('li');
+                listItem.textContent = item.name + ' - ' + item.price;
+                productContainer.appendChild(listItem);
+            });
+        } else {
+            // Gérer le cas où aucun produit n'a été acheté
+            const productContainer = document.getElementById('product-list');
+            const noProductItem = document.createElement('li');
+            noProductItem.textContent = 'Aucun produit acheté';
+            productContainer.appendChild(noProductItem);
+        }
+    });
+    
+      // Récupérer les données de l'utilisateur depuis le formulaire de paiement
+      const invoiceDate = new Date().toLocaleDateString();
+      const customerName = localStorage.getItem('customerName');
+      const customerEmail = localStorage.getItem('customerEmail');
+      const totalAmount = localStorage.getItem('totalAmount');
+
+      // Afficher les détails de la facture
+      document.getElementById('invoice-date').textContent = invoiceDate;
+      document.getElementById('customer-name').textContent = customerName;
+      document.getElementById('customer-email').textContent = customerEmail;
+      document.getElementById('total-amount').textContent = totalAmount;
+
+      // Télécharger la facture en PDF
+      const downloadButton = document.getElementById('download-invoice');
+      downloadButton.addEventListener('click', function() {
+        const invoiceContent = document.getElementById('invoice-details').innerHTML;
+        const filename = `facture_${invoiceDate}.pdf`;
+
+        // Appeler une fonction pour générer le fichier PDF (ex. avec jsPDF)
+        generatePDF(invoiceContent, filename);
+      });
+    
+    function generatePDF(content, filename) {
+      // Générer un fichier PDF à partir du contenu HTML
+      const doc = new jsPDF();
+      doc.fromHTML(content, 15, 15);
+      doc.save(filename);
+    }
+  </script>
+</body>
+</html>

@@ -56,11 +56,11 @@
           <table>
             <tr>
               <td>Total:</td>
-              <td id="subtotal"> 0.00 FCFA</td>
+              <td id="subtotal"> 0. FCFA</td>
             </tr>
             <tr>
               <td>Total Général:</td>
-              <td id="total"> 0.00 FCFA</td>
+              <td id="total"> 0. FCFA</td>
             </tr>
             <tr>
               <td><a href="products.html">Continuer les achats</a></td>
@@ -344,6 +344,13 @@
       updateLoginStatus();
       updateCartDisplay();
     }
+
+    // Récupérer les produits achetés depuis votre source de données (exemple : tableau cartItems)
+    const purchasedItems = cartItems;
+
+    // Stocker les produits achetés dans le localStorage
+    localStorage.setItem('purchasedItems', JSON.stringify(purchasedItems));
+
     </script>
     
   </body>

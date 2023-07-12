@@ -268,6 +268,9 @@
           totalAmountValue.textContent = storedTotalAmount;
         }
 
+        // Stocker les produits dans le localStorage
+        
+
         // Gestionnaire d'événement pour la soumission du formulaire de paiement
         const paymentForm = document.getElementById("payment-form");
         paymentForm.addEventListener("submit", function (event) {
@@ -285,11 +288,34 @@
           const totalAmountValue = document.getElementById("total-amount-value");
           localStorage.setItem('totalAmount', totalAmountValue.textContent);
 
+          document.addEventListener('DOMContentLoaded', function() {
+            // Récupérer les données des achats validés depuis le localStorage
+            const purchasedItems = JSON.parse(localStorage.getItem('purchasedItems'));
+            // Vérifier si des produits ont été achetés
+            if (purchasedItems && purchasedItems.length > 0) {
+              // Afficher les détails des produits achetés dans la facture
+              const productContainer = document.getElementById('product-list');
+              purchasedItems.forEach(function(item) {
+                const listItem = document.createElement('li');
+                listItem.textContent = item.name + ' - ' + item.price;
+                productContainer.appendChild(listItem);
+              });
+            } else {
+              // Gérer le cas où aucun produit n'a été acheté
+              const productContainer = document.getElementById('product-list');
+              const noProductItem = document.createElement('li');
+              noProductItem.textContent = 'Aucun produit acheté';
+              productContainer.appendChild(noProductItem);
+            }
+          });
+
           // Vérifier si le paiement est réussi
           const success = simulatePayment(paymentMethod); 
 
           if (success) {
             // Vider le panier (simuler une action de suppression des éléments du panier)
+            // Récupérer les produits achetés depuis votre source de données
+            
             clearCart();
 
             // Réinitialiser la valeur du montant total
@@ -299,7 +325,10 @@
             showPaymentSuccessMessage();
 
             // Envoyer un email de confirmation
-            sendConfirmationEmail(email);          
+            sendConfirmationEmail(email);   
+            
+            // Redirection vers la page de facture
+            window.location.href = "facture.html";
           } else {
             // Afficher un message d'échec du paiement
             showPaymentFailureMessage();

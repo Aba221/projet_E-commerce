@@ -7,73 +7,58 @@
 <style>
 body {
   font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f2f2f2;
 }
 
 h1 {
   text-align: center;
-  margin-top: 20px;
 }
 
 #invoice-details {
-  background-color: #fff;
-  padding: 20px;
-  margin: 20px auto;
-  max-width: 600px;
-  border: 1px solid #ddd;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin: 20px;
 }
 
-#invoice-details h2 {
-  font-size: 18px;
-  margin-bottom: 10px;
+#product-table {
+  width: 100%;
+  border-collapse: collapse;
 }
 
-#invoice-details p {
-  margin-bottom: 5px;
+#product-table th,
+#product-table td {
+  padding: 10px;
+  border: 1px solid #ccc;
 }
 
-ul#product-list {
-  list-style-type: none;
-  padding: 0;
+#product-table th {
+  background-color: #f2f2f2;
+  text-align: left;
 }
 
-ul#product-list li {
-  margin-bottom: 5px;
-}
-
-#total-amount {
+#product-table tfoot td {
   font-weight: bold;
-  display: flex;
-  justify-content: end;
+  text-align: end;
 }
 
 #download-invoice {
   display: block;
   width: 200px;
   margin: 20px auto;
-  padding: 10px 20px;
-  background-color: #4caf50;
+  padding: 10px;
+  text-align: center;
+  background-color: #007bff;
   color: #fff;
-  text-align: center;
-  text-decoration: none;
+  border: none;
   border-radius: 4px;
+  cursor: pointer;
 }
 
-a.back {
+.back {
   display: block;
-  margin-top: 20px;
+  width: 200px;
+  margin: 0 auto;
   text-align: center;
-  color: #333;
   text-decoration: none;
+  color: #007bff;
 }
-
-a.back:hover {
-  text-decoration: underline;
-}
-
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
 </head>
@@ -83,17 +68,26 @@ a.back:hover {
 
   <div id="invoice-details">
     <h2>Détails de la facture</h2>
-    <p><strong>Date :</strong> <span id="invoice-date"></span></p>
-    <p><strong>Nom :</strong> <span id="customer-name"></span></p>
-    <p><strong>Email :</strong> <span id="customer-email"></span></p>
-    <p><strong>Produits :</strong></p>
-    <ul id="product-list"></ul>
-    <p style="text-align: end;"><strong>Montant total :</strong> <span id="total-amount"></span></p>
+    <table id="product-table">
+      <thead>
+        <tr>
+          <th>Produit</th>
+          <th>Prix</th>
+        </tr>
+      </thead>
+      <tbody id="product-list">
+        <!-- Les produits seront ajoutés ici dynamiquement -->
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="2" style="text-align: end;"><strong>Montant total :</strong> <span id="total-amount"></span></td>
+        </tr>
+      </tfoot>
+    </table>
   </div>
 
   <button id="download-invoice">Télécharger la facture</button> <br> </br>
   <a href="index.html" class="back">Revenir à la page d'accueil</a>
-
   <script>
     document.addEventListener('DOMContentLoaded', function() {
         // Récupérer les données des achats validés depuis le localStorage ou une autre source
@@ -102,18 +96,32 @@ a.back:hover {
         // Vérifier si des produits ont été achetés
         if (purchasedItems && purchasedItems.length > 0) {
             // Afficher les détails des produits achetés dans la facture
-            const productContainer = document.getElementById('product-list');
+            const productList = document.getElementById('product-list');
             purchasedItems.forEach(function(item) {
-                const listItem = document.createElement('li');
-                listItem.textContent = item.name + ' - ' + item.price;
-                productContainer.appendChild(listItem);
+              const row = document.createElement('tr');
+
+              const productNameCell = document.createElement('td');
+              productNameCell.textContent = item.name;
+              row.appendChild(productNameCell);
+
+              const productPriceCell = document.createElement('td');
+              productPriceCell.textContent = item.price;
+              row.appendChild(productPriceCell);
+                
+              productList.appendChild(row);
             });
         } else {
             // Gérer le cas où aucun produit n'a été acheté
-            const productContainer = document.getElementById('product-list');
-            const noProductItem = document.createElement('li');
-            noProductItem.textContent = 'Aucun produit acheté';
+            const productList = document.getElementById('product-list');
+            const noProductRow = document.createElement('tr');
+
+            const noProductCell = document.createElement('td');
+            noProductCell.textContent = 'Aucun produit acheté';
+            noProductCell.colSpan = 2;
+            noProductRow.appendChild(noProductCell);
             productContainer.appendChild(noProductItem);
+
+            productList.appendChild(noProductRow);
         }
     });
     

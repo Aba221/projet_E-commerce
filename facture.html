@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Facture</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
+
 <style>
 body {
   font-family: Arial, sans-serif;
@@ -20,17 +23,19 @@ h1 {
 #product-table {
   width: 100%;
   border-collapse: collapse;
+  margin-top: 20px;
 }
+
 
 #product-table th,
 #product-table td {
   padding: 10px;
   border: 1px solid #ccc;
+  text-align: center;
 }
 
 #product-table th {
   background-color: #f2f2f2;
-  text-align: left;
 }
 
 #product-table tfoot td {
@@ -50,29 +55,39 @@ h1 {
   border-radius: 4px;
   cursor: pointer;
 }
-
+#customer-name,
+#customer-email{
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-style: italic;
+}
 .back {
   display: block;
   width: 200px;
   margin: 0 auto;
   text-align: center;
-  text-decoration: none;
-  color: #007bff;
+  text-decoration:underline;
+  color: #0753aa;
 }
 </style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+
 </head>
 
 <body>
+  <img src="images/logo1.png" alt="" width="125px"/>
   <h1>Facture</h1>
 
   <div id="invoice-details">
     <h2>Détails de la facture</h2>
+    <p>Date : <span id="invoice-date"></span></p>
+    <p>Client: <span id="customer-name"></span></p>
+    <p>Email: <span id="customer-email"></span></p>
     <table id="product-table">
       <thead>
         <tr>
           <th>Produit</th>
-          <th>Prix</th>
+          <th>Quantité</th>
+          <th>Prix Unitaire</th>
+          <th>Prix Total</th>
         </tr>
       </thead>
       <tbody id="product-list">
@@ -80,7 +95,7 @@ h1 {
       </tbody>
       <tfoot>
         <tr>
-          <td colspan="2" style="text-align: end;"><strong>Montant total :</strong> <span id="total-amount"></span></td>
+          <td colspan="3"><strong>Montant total :</strong> <span id="total-amount"></span></td>
         </tr>
       </tfoot>
     </table>
@@ -104,9 +119,17 @@ h1 {
               productNameCell.textContent = item.name;
               row.appendChild(productNameCell);
 
+              const productQuantityCell = document.createElement('td');
+              productQuantityCell.textContent = item.quantity;
+              row.appendChild(productQuantityCell);
+
               const productPriceCell = document.createElement('td');
               productPriceCell.textContent = item.price;
               row.appendChild(productPriceCell);
+
+              const productTotalCell = document.createElement('td');
+              productTotalCell.textContent = item.price * item.quantity;
+              row.appendChild(productTotalCell);
                 
               productList.appendChild(row);
             });
@@ -117,9 +140,8 @@ h1 {
 
             const noProductCell = document.createElement('td');
             noProductCell.textContent = 'Aucun produit acheté';
-            noProductCell.colSpan = 2;
+            noProductCell.colSpan = 4;
             noProductRow.appendChild(noProductCell);
-            productContainer.appendChild(noProductItem);
 
             productList.appendChild(noProductRow);
         }
@@ -130,6 +152,7 @@ h1 {
       const customerName = localStorage.getItem('customerName');
       const customerEmail = localStorage.getItem('customerEmail');
       const totalAmount = localStorage.getItem('totalAmount');
+      
 
       // Afficher les détails de la facture
       document.getElementById('invoice-date').textContent = invoiceDate;
@@ -149,10 +172,14 @@ h1 {
     
     function generatePDF(content, filename) {
       // Générer un fichier PDF à partir du contenu HTML
-      const doc = new jsPDF();
-      doc.fromHTML(content, 15, 15);
-      doc.save(filename);
-    }
+      const doc = new window.jspdf.jsPDF();
+      doc.html(document.getElementById('invoice-details').outerHTML, {
+        callback: function (doc) {
+          doc.save(filename);
+        }
+      });
+    }     
+
   </script>
 </body>
 </html>

@@ -15,6 +15,18 @@
     />
     <script src="rellax.min.js"></script>
   </head>
+  <style>
+    p{
+      color: black;
+    }
+    button{
+      display: flex;
+      border-radius: 2px;
+      padding: 5px;
+      background-color:rgb(233, 73, 10);
+      color: white;
+    }
+  </style>
   <body>
     <div class="container">
       <div class="navbar">
@@ -68,6 +80,7 @@
             </tr>
           </table>
         </div>
+        <div id="panier-container"></div>
       </div>
 
     
@@ -213,12 +226,28 @@
       const isLoggedIn = loggedIn;
       const hasValidOrder = isLoggedIn && orderValidated; // Supposons que `orderValidated` est une variable qui stocke l'état de validation de la commande
     
-      // Vider le panier si l'utilisateur n'est pas connecté ou s'il n'a pas de commande valide
-      if (!isLoggedIn || !hasValidOrder) {
+    // Vider le panier si l'utilisateur n'est pas connecté ou s'il n'a pas de commande valide
+    if (!isLoggedIn || !hasValidOrder) {
       cartItems = [];
       localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    
+      // Afficher le message et le bouton
+      const message = document.createElement('p');
+      message.textContent = "Votre panier est vide! Parcourez nos catégories et découvrez nos meilleures offres!";
+  
+      const button = document.createElement('button');
+      button.textContent = "Commencer vos achats";
+      button.addEventListener('click', () => {
+        // Rediriger vers la page des produits
+        window.location.href = "products.html";
+      });
+
+      const container = document.getElementById('panier-container');
+      container.appendChild(message);
+      container.appendChild(button);
+
       }
-    }
+    } 
 
     function hasValidOrder() {
       return true;

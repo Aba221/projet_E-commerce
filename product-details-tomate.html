@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>All Products - Red store</title>
+    <title>All Products - Sunu Mbay</title>
     <link rel="stylesheet" href="style.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,200&display=swap"
@@ -13,6 +13,7 @@
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
     />
+    <script src="rellax.min.js"></script>
     <style>
       body{
         background:radial-gradient(#fff, #1a81a0) ;
@@ -21,7 +22,7 @@
         cursor: pointer;
       }
     </style>
-    <script src="rellax.min.js"></script>
+
   </head>
   <body>
     <div class="container">
@@ -35,8 +36,8 @@
           <ul id="MenuItems">
             <li><a href="index.html">Accueil</a></li>
             <li><a href="products.html">Produits</a></li>
-            <li><a href="about.html">A Propos</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="">A Propos</a></li>
+            <li><a href="">Contact</a></li>
             <li><a href="account.html">Compte</a></li>
             <!-- TODo: 22:20 -->
           </ul>
@@ -57,51 +58,45 @@
     <div class="small-container single-product">
       <div class="row">
         <div class="col-2">
-          <img src="images/galery-1.jpg" width="100%" id="ProductImg" />
+          <img src="images/galery-5.jpg" width="100%" id="ProductImg" />
 
           <div class="small-img-row">
             <div class="small-img-col">
-              <img src="images/galery-1.jpg" class="small-img" />
+              <img src="images/galery-5.jpg" class="small-img" />
             </div>
             <div class="small-img-col">
-              <img src="images/galery-2.jpg" class="small-img" />
+              <img src="images/galery-6.jpg" class="small-img" />
             </div>
             <div class="small-img-col">
-              <img src="images/galery-3.jpg" class="small-img" />
+              <img src="images/galery-7.jpg" class="small-img" />
             </div>
             <div class="small-img-col">
-              <img src="images/galery-4.jpg" class="small-img" />
+              <img src="images/galery-8.jpg" class="small-img" />
             </div>
           </div>
         </div>
         <div class="col-2">
-          <p>Légumes</p>
-          <h2 id="ProductName">Haricots Verts</h2>
-          <h4>500 FCFA/kg</h4>
-          <!--<select name="" id=""> 
-            <option value="">Selectionner Quantité</option>
-            <option value="">Sac de 50kg</option>
-            <option value="">Sac de 25kg</option>
-            <option value="">Sac de 10kg</option>
-            <option value="">Sac de 5kg</option>
-            <option value="">Sac de 2kg</option> 
-          </select> -->
+          <p>Accueil/ Légumes</p>
+          <h2>Tomates</h2>
+          <h4>Prix: 500 FCFA/Kg</h4>
+          
           <input type="number" value="1" />
-          <button onclick="addToCart('Haricots_Verts', 500)">Ajouter au Panier</button><br> 
-          <button onclick="toggleProductDetails('haricots')" style="background-color: #1ea01a;">Afficher les Caractéristiques</button><br></br>
-          <div id="haricotsDetails" style="display: none;">
+          <button onclick="addToCart('Tomates', 500)">Ajouter au Panier</button><br>
+          <button onclick="toggleProductDetails('tomates')" style="background-color: #1ea01a;">Afficher les Caractéristiques</button><br></br>
+          <div id="tomatesDetails" style="display: none;">
             <h3>Détails du Produit</h3><br/>
             <ul>
+              <li>Couleur : Rouge</li>
               <li>Origine : Locale</li>
-              <li>Poids moyen : 200g</li>
-              <li>Goût : Croquant et frais</li>
-              <li>Préparation : Cuisson à la vapeur, sauté ou en salade</li>
+              <li>Poids moyen : 150g</li>
+              <li>Goût : Sucré et savoureux</li>
+              <li>Texture : Ferme et juteuse</li>
             </ul>
           </div>
           <br>
           <p>
-            Les haricots verts sont des légumes croquants et nutritifs, riches en fibres et en vitamines. <br>
-            Ils ajoutent de la fraîcheur à vos repas et sont appréciés pour leur goût délicat.
+            Les tomates sont des fruits savoureux et juteux qui sont largement utilisés dans la cuisine.<br>
+            Elles sont polyvalentes et peuvent être utilisées dans les salades, les sauces, les soupes et bien d'autres plats délicieux.
           </p>
         </div>
       </div>
@@ -120,8 +115,8 @@
     <div class="small-container">
       <div class="row">
         <div class="col-4">
-          <img src="images/produit-15.png" alt="" />
-          <h4>Haricots Blancs</h4>
+          <img src="images/produit-1.png" alt="" />
+          <h4>Haricots Verts</h4>
           <div class="rating">
             <i class="fa fa-star"></i>
             <i class="fa fa-star"></i>
@@ -146,8 +141,8 @@
         </div>
 
         <div class="col-4">
-          <img src="images/produit-17.jpg" alt="" />
-          <h4>Pois aux yeux noirs/ Niébé</h4>
+          <img src="images/produit-12.png" alt="" />
+          <h4>Tomates</h4>
           <div class="rating">
             <i class="fa fa-star"></i>
             <i class="fa fa-star"></i>
@@ -158,8 +153,8 @@
           <p>F CFA 50</p>
         </div>
         <div class="col-4">
-          <img src="images/produit-18.jpg" alt="" />
-          <h4> Lentilles</h4>
+          <img src="images/produit-13.jpg" alt="" />
+          <h4>Oignons</h4>
           <div class="rating">
             <i class="fa fa-star"></i>
             <i class="fa fa-star"></i>
@@ -188,7 +183,7 @@
             </div>
           </div>
           <div class="footer-col-2">
-            <img src="images/Logo2.png" alt="" />
+            <img src="images/logo-white.png" alt="" />
             <p>
               Nourrissez votre santé avec la puissance <br /> des produits agricoles !
             </p>
@@ -248,6 +243,7 @@
       smallImg[3].onclick = function () {
         ProductImg.src = smallImg[3].src;
       };
+
       function toggleProductDetails(product) {
         const productDetails = document.getElementById(`${product}Details`);
         if (productDetails.style.display === 'none') {
@@ -255,8 +251,7 @@
         } else {
           productDetails.style.display = 'none';
         }
-      }
-
+      } 
     </script>
   </body>
 </html>

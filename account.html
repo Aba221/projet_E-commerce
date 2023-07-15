@@ -14,8 +14,8 @@
       href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
     />
     
-    </script>
   </head>
+
   <body>
     <div class="header">
       <div class="container">
@@ -60,8 +60,8 @@
             <div class="form-box">
               <div class="button-box">
                   <div id="indicator"></div>
-                  <button type="button" class="toggle-btn" onclick="login()">Se Connecter</button>
-                  <button type="button" class="toggle-btn" onclick="register()">S'inscrire</button>
+                  <button type="button" class="toggle-btn" onclick="login()">Connexion</button>
+                  <button type="button" class="toggle-btn" onclick="register()">Inscription</button>
               </div>
               <div id="loggedInMessage" style="display: block;">
                 <h2>Connecté</h2>
@@ -104,10 +104,9 @@
             </div>
           </div>
           <div class="footer-col-2">
-            <img src="images/logo-white.png" alt="" />
+            <img src="images/Logo2.png" alt="" />
             <p>
-              Lorem, ipsum dolor sit amet consectetur <br />adipisicing elit.
-              Porro, eum?
+              Nourrissez votre santé avec la puissance <br /> des produits agricoles !
             </p>
           </div>
           <div class="footer-col-3">
@@ -216,29 +215,31 @@
       }
 
       function checkUserLoggedIn() {    
+        
         console.log('Checking if user is logged in');
         const loggedIn = localStorage.getItem('loggedIn') === 'true';
         console.log('User is logged in:', loggedIn);
         console.log(loggedInMessage);
+        
         if (loggedIn) {
           // Si l'utilisateur est connecté, nous cachons les formulaires et affichons le message de connexion
           formBox.style.display = 'block';
           loggedInMessage.style.display = 'none';
+          
         } else {
           // Si l'utilisateur n'est pas connecté, nous affichons les formulaires et cachons le message de connexion
           formBox.style.display = 'block';
           loggedInMessage.style.display = 'none';
+          
         }
       }
           // Ajouter des gestionnaires d'événements pour les formulaires de connexion et d'inscription
-      document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function() {
         LoginForm.addEventListener('submit', handleLoginSubmit);
         RegForm.addEventListener('submit', handleRegisterSubmit);
+
         checkUserLoggedIn();
       });
-
-      
-
 
     </script>      
   </body>

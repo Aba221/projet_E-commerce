@@ -50,6 +50,7 @@ p {
   padding: 10px;
   border: none;
   width: 300px;
+  border-radius: 4px;
 }
 
 button[type="submit"] {
@@ -58,6 +59,7 @@ button[type="submit"] {
   background-color: #1a81a0;
   color: white;
   cursor: pointer;
+  border-radius: 4px;
 }
 
 button[type="submit"]:hover {
@@ -599,6 +601,7 @@ th:last-child {
   text-align: right;
 }
 
+
 /* Styles pour la fenêtre modale de connexion */
 #login-modal {
   display: none;
@@ -702,6 +705,7 @@ th:last-child {
 
 .form-box {
   background: #fff;
+  margin-left: 150px;
   width: 300px;
   height: 400px;
   position: relative;
@@ -709,26 +713,28 @@ th:last-child {
   padding: 20px 0;
   overflow: hidden;
   box-shadow: 0 0 20px 0 rgb(46, 36, 36);
+  border-radius: 7px;
 }
 
 .button-box {
   width: 220px;
-  margin: 35px auto;
+  margin: 45px auto;
   position: relative;
-  box-shadow: 0 0 20px 9px #ff61241f ;
+  box-shadow: 0 0 20px 11px #ff61241f ;
   border-radius: 30px;
 }
 
 .toggle-btn {
   font-weight: bold;
   display: inline-block;
-  padding: 10px 30px;
+  padding: 10px 20px;
   cursor: pointer;
   background: transparent;
-  width: 100px;
+  width: 107px;
   outline: none;
   position: relative ;
   border: none;
+  
 }
 
 #indicator {
@@ -762,6 +768,7 @@ th:last-child {
   border-bottom: 1px solid #999;
   outline: none;
   background: transparent;
+  border-radius: 4px;
 }
 
 .submit-btn {
@@ -803,6 +810,7 @@ form p {
   padding: 10px;
   border: 2px solid black;
 }
+
 
 @keyframes rotate {
   50% {
@@ -895,3 +903,33 @@ form p {
 .active {
   background-color: #e6e6e6;
 }
+
+/*Mopay Page*/
+a.pay {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 5px 10px;
+  background-color: #ff523b;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+a.pay:hover {
+  background-color: #ff2d00;
+}
+
+a.pay:focus {
+  outline: none;
+}
+
+.cart-table-visible {
+  display: table;
+}
+
+.cart-table-hidden {
+  display: none;
+}
+
+

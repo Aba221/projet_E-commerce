@@ -139,7 +139,7 @@
           <label for="lastName">Nom</label>
           <input type="text" id="lastName" required> 
       
-          <label for="country">Pays ou Région</label>
+          <label for="country">Adresse</label>
           <input type="text" id="country" required>
       
           <label for="phoneNumber">Numéro de téléphone</label>
@@ -315,7 +315,12 @@
           if (success) {
             // Vider le panier (simuler une action de suppression des éléments du panier)
             // Récupérer les produits achetés depuis votre source de données
-            
+            localStorage.setItem('totalAmount', totalAmountValue.textContent);
+
+            // Stocker le nom et l'e-mail du client dans le localStorage
+            localStorage.setItem('customerName', firstName + " " + lastName);
+            localStorage.setItem('customerEmail', email);
+
             clearCart();
 
             // Réinitialiser la valeur du montant total

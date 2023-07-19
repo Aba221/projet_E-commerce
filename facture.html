@@ -56,11 +56,8 @@ h1 {
   border-radius: 4px;
   cursor: pointer;
 }
-#customer-name,
-#customer-email{
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  font-style: italic;
-}
+
+
 .back {
   display: block;
   width: 200px;
@@ -73,9 +70,11 @@ h1 {
 
 </head>
 
-<body>
+<body> 
+  <div id="imagine">
   <img src="images/logo1.png" alt="" width="125px"/>
-  <h1>Facture</h1>
+  <div id="titre">
+    <h1>Facture</h1>
 
   <div id="invoice-details">
     <h2>Détails de la facture</h2>
@@ -100,6 +99,8 @@ h1 {
         </tr>
       </tfoot>
     </table>
+  </div>
+  </div>
   </div>
 
   <button id="download-invoice">Télécharger la facture</button> <br> </br>
@@ -148,6 +149,27 @@ h1 {
         }
     });
     
+      // Récupérer le numéro de facture depuis le localStorage
+      let invoiceNumber = localStorage.getItem('invoiceNumber');
+  
+      // Si le numéro de facture n'existe pas encore, initialiser à 1
+      if (!invoiceNumber) {
+        invoiceNumber = 1;
+      } else {
+        // Sinon, convertir le numéro de facture en nombre et l'incrémenter
+        invoiceNumber = parseInt(invoiceNumber) + 1;
+      }
+
+      // Stocker le nouveau numéro de facture dans le localStorage
+      localStorage.setItem('invoiceNumber', invoiceNumber);
+      
+
+      // Afficher le numéro de facture
+      const invoiceNumberElement = document.createElement('p');
+      invoiceNumberElement.textContent = 'N° facture : ' + invoiceNumber;
+      document.getElementById('invoice-details').prepend(invoiceNumberElement);
+  
+
       // Récupérer les données de l'utilisateur depuis le formulaire de paiement
       const invoiceDate = new Date().toLocaleDateString();
       const customerName = localStorage.getItem('customerName');
@@ -174,16 +196,16 @@ h1 {
       // Générer un fichier PDF à partir du contenu HTML
         const doc = new window.jspdf.jsPDF(); 
 
-        // Ajouter le titre "Facture" et les "détails de la facture" dans le PDF
-        doc.setFontSize(18);
-        doc.text("Facture", 10, 10);
-        doc.setFontSize(12);
-        doc.text("Détails de la facture", 10, 20);
+        // Convertir le contenu du div en canvas puis en image
+        html2canvas(document.getElementById('imagine'), { scale: 2 }).then(canvas => {
+            var imgData = canvas.toDataURL('image/png');
+            var imgHeight = canvas.height * 210 / canvas.width;
+        
+            // Ajouter l'image au document
+            doc.addImage(imgData, 'PNG', 0, 40, 210, imgHeight);
 
-        const table = document.getElementById('product-table');
-        doc.autoTable({ html: table });
-
-        doc.save(filename);
+            doc.save(filename);
+        });
       }
       
   </script>

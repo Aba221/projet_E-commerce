@@ -3,11 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contactez-nous - Red store</title>
+  <title>Contactez-nous - Sunu Mbay</title>
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,200&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+<style>
+input[type="text"],
+input[type="email"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus {
+  outline: none;
+  border-color: #ff523b;
+}
+
+.footer-col-3 li a,
+.social-links li a {
+  color:#fffefe;
+}
+
+</style>
 <body style="background: radial-gradient(ellipse at 50% 50%, #00e1ff8a, #00b7ff10);">
   <div class="container">
     <div class="navbar">
@@ -42,7 +64,7 @@
             </div>
             <div>
               <span><i class="fa fa-envelope"></i></span>
-              <span>contact@sunumbay.com</span>
+              <span>contact@sunumbay.com</span> <br>
             </div>
             <div>
               <span><i class="fa fa-phone"></i></span>
@@ -60,14 +82,20 @@
       <div class="contact-col">
         <div class="contact-form">
           <h2>Envoyez un message</h2>
-          <form action="#">
-            <input type="text" placeholder="Nom complet" required>
+          <form id="contactForm" action="#">
+            <input type="text" placeholder="Nom complet" required> 
             <input type="email" placeholder="Adresse e-mail" required><br><br>
             <textarea placeholder="Message" required rows="5px" cols="150px"></textarea>
             <input type="submit" class="btn" value="Envoyer">
           </form>
         </div>
       </div>
+    </div>
+  </div>
+  <div id="confirmationModal" style="display: none; position: fixed; z-index: 1; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.4);">
+    <div style="background-color: #fefefe; margin: 15% auto; padding: 20px; border: 1px solid #888; width: 80%;">
+      <span id="closeModal" style="color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer;">&times;</span>
+      <p>Votre message a été bien envoyé</p>
     </div>
   </div>
 
@@ -83,7 +111,7 @@
           </div>
         </div>
         <div class="footer-col-2">
-          <img src="images/logo-white.png" alt="" width="180px">
+          <img src="images/Logo2.png" alt="" width="180px">
           <p>Notre objectif est de fournir des produits frais et de qualité à nos clients, tout en soutenant une agriculture locale et durable.</p>
         </div>
         <div class="footer-col-3">
@@ -109,6 +137,18 @@
       <p class="copy">© 2023 Sunu Mbay. Tous droits réservés.</p>
     </div>
   </div>
+
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      document.getElementById('confirmationModal').style.display = "block";
+    });
+    
+    document.getElementById('closeModal').addEventListener('click', function() {
+      document.getElementById('confirmationModal').style.display = "none";
+      location.reload();
+    });
+    </script>
 
   <script src="script.js"></script>
 </body>

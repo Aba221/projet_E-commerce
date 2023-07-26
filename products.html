@@ -21,10 +21,20 @@
     .social-links li a {
       color:#fffefe;
     }
+    p,
+    h4{
+      color: #030303;
+      text-align: center;
+    }
+    .rating{
+      text-align: center;
+    }
 
   </style>
+  <script src="cart.js"></script>
+  
   </head>
-  <body style="background: radial-gradient(circle, #e2e0e0, #7eb697);">
+  <body style="background: radial-gradient(circle, #e2e0e0, #24bd69);">
     <div class="container">
       <div class="navbar">
         <div class="logo">
@@ -42,45 +52,39 @@
             <!-- TODo: 22:20 -->
           </ul>
         </nav>
-        <a href="cart.html"
-          ><img src="images/cart.png" alt="" width="30px" height="30px"
-        /></a>
-        <img
-          src="images/menu.png"
-          alt=""
-          class="menu-icon"
-          onclick="menutoggle()"
-        />
+        <a href="cart.html"><img src="images/cart.png" alt="" width="30px" height="30px"/></a>
+        <img src="images/menu.png" alt="" class="menu-icon" onclick="menutoggle()">
+        <span id="cart-item-count">0</span>
       </div>
     </div>
 
     <div class="small-container">
       <div class="row row-2">
         <h2>Tous les Produits</h2>
-        <select name="" id="">
-          <option value="">Tri par défaut</option>
-          <option value="">Tri par Prix</option>
-          <option value="">Tri par Popularité</option>
-          <option value="">Tri par Notation</option>
-          <option value="">Tri par Vente</option>
+        <select name="sort-select" id="sort-select">
+          <option value="default">Tri par défaut</option>
+          <option value="price">Tri par Prix</option>
+          <option value="popularity">Tri par Popularité</option>
+          <option value="rating">Tri par Notation</option>
         </select>
       </div>
 
+      <div class="products-container" id="products-container">
       <div class="row">
-        <div class="col-4 product-item" data-page="1"> <a href="product-details.html">
+        <div class="col-4 product-item" data-page="1" data-popularity="0"> <a href="product-details.html">
           <img src="images/produit-1.png" alt="" /> </a>
           <h4>Haricots Verts</h4>
           <div class="rating">
             <i class="fa fa-star"></i>
             <i class="fa fa-star"></i>
             <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
+            <i class="fa fa-star-half-o"></i>
             <i class="fa fa-star-o"></i>
           </div>
-          <p>F CFA 50.00</p>
+          <p>400 FCFA </p>
         </div>
 
-        <div class="col-4 product-item" data-page="1"> <a href="product-details-tomate.html">
+        <div class="col-4 product-item" data-page="1" data-popularity="0"> <a href="product-details-tomate.html">
           <img src="images/produit-2.png" alt="" /> </a>
           <h4>Tomates</h4>
           <div class="rating">
@@ -90,10 +94,10 @@
             <i class="fa fa-star-half-o"></i>
             <i class="fa fa-star-o"></i>
           </div>
-          <p>F CFA 50.00</p>
+          <p>600 FCFA</p>
         </div>
 
-        <div class="col-4 product-item" data-page="1"> <a href="product-details-lait.html">
+        <div class="col-4 product-item" data-page="1" data-popularity="0"> <a href="product-details-lait.html">
           <img src="images/produit-3.png" alt="" /></a>
           <h4>Lait de Vache</h4>
           <div class="rating">
@@ -103,9 +107,9 @@
             <i class="fa fa-star"></i>
             <i class="fa fa-star-half-o"></i>
           </div>
-          <p>F CFA 50.00</p>
+          <p>1000 FCFA</p>
         </div>
-        <div class="col-4 product-item" data-page="1"> <a href="product-details-poulets.html">
+        <div class="col-4 product-item" data-page="1" data-popularity="0"> <a href="product-details-poulets.html">
           <img src="images/produit-4.png" alt="" /></a>
           <h4>Poulets</h4>
           <div class="rating">
@@ -115,11 +119,11 @@
             <i class="fa fa-star"></i>
             <i class="fa fa-star-o"></i>
           </div>
-          <p>F CFA 50.00</p>
+          <p>2500 FCFA</p>
         </div>
       </div>
       <div class="row">
-        <div class="col-4 product-item" data-page="1"><a href="product-details-viande-de-boeuf.html">
+        <div class="col-4 product-item" data-page="1" data-popularity="0"><a href="product-details-viande-de-boeuf.html">
           <img src="images/produit-5.png" alt="" /></a>
           <h4>Viande de Boeuf</h4>
           <div class="rating">
@@ -129,10 +133,10 @@
             <i class="fa fa-star"></i>
             <i class="fa fa-star-o"></i>
           </div>
-          <p>F CFA 50.00</p>
+          <p>3800 FCFA</p>
         </div>
 
-        <div class="col-4 product-item" data-page="1"><a href="product-details-nxdecajou.html">
+        <div class="col-4 product-item" data-page="1" data-popularity="0"><a href="product-details-nxdecajou.html">
           <img src="images/produit-6.png" alt="" /></a>
           <h4>Noix de Cajou</h4>
           <div class="rating">
@@ -142,10 +146,10 @@
             <i class="fa fa-star-half-o"></i>
             <i class="fa fa-star-o"></i>
           </div>
-          <p>F CFA 50.00</p>
+          <p>4800 FCFA</p>
         </div>
 
-        <div class="col-4 product-item" data-page="1"><a href="product-details-papaye.html">
+        <div class="col-4 product-item" data-page="1" data-popularity="0"><a href="product-details-papaye.html">
           <img src="images/produit-7.png" alt="" /></a>
           <h4>Papayes</h4>
           <div class="rating">
@@ -155,9 +159,9 @@
             <i class="fa fa-star"></i>
             <i class="fa fa-star-half-o"></i>
           </div>
-          <p>F CFA 50.00</p>
+          <p>1300 FCFA</p>
         </div>
-        <div class="col-4 product-item" data-page="1"><a href="product-details-oeufsdepoule.html">
+        <div class="col-4 product-item" data-page="1" data-popularity="0"><a href="product-details-oeufsdepoule.html">
           <img src="images/produit-8.png" alt="" /></a>
           <h4>Oeufs de Poules</h4>
           <div class="rating">
@@ -167,11 +171,11 @@
             <i class="fa fa-star"></i>
             <i class="fa fa-star-o"></i>
           </div>
-          <p>F CFA 50.00</p>
+          <p>3000 FCFA</p>
         </div>
       </div>
       <div class="row">
-        <div class="col-4 product-item" data-page="1"><a href="product-details-maïs.html">
+        <div class="col-4 product-item" data-page="1" data-popularity="0"><a href="product-details-maïs.html">
           <img src="images/produit-9.png" alt="" /></a>
           <h4>Maïs</h4>
           <div class="rating">
@@ -181,10 +185,10 @@
             <i class="fa fa-star"></i>
             <i class="fa fa-star-o"></i>
           </div>
-          <p>F CFA 50.00</p>
+          <p>700 FCFA</p>
         </div>
 
-        <div class="col-4 product-item" data-page="1"><a href="product-details-maad.html">
+        <div class="col-4 product-item" data-page="1" data-popularity="0"><a href="product-details-maad.html">
           <img src="images/produit-10.png" alt="" /></a>
           <h4>Maadd</h4>
           <div class="rating">
@@ -194,10 +198,10 @@
             <i class="fa fa-star-half-o"></i>
             <i class="fa fa-star-o"></i>
           </div>
-          <p>F CFA 50.00</p>
+          <p>1200 FCFA</p>
         </div>
 
-        <div class="col-4 product-item" data-page="1"><a href="product-details-bouye.html">
+        <div class="col-4 product-item" data-page="1" data-popularity="0"><a href="product-details-bouye.html">
           <img src="images/produit-11.png" alt="" /></a>
           <h4>Bouye</h4>
           <div class="rating">
@@ -207,9 +211,9 @@
             <i class="fa fa-star"></i>
             <i class="fa fa-star-half-o"></i>
           </div>
-          <p>F CFA 50.00</p>
+          <p>1300 FCFA</p>
         </div>
-        <div class="col-4 product-item" data-page="1"><a href="product-details-carotte.html">
+        <div class="col-4 product-item" data-page="1" data-popularity="0"><a href="product-details-carotte.html">
           <img src="images/produit-12.png" alt="" /></a>
           <h4>Carottes</h4>
           <div class="rating">
@@ -219,11 +223,11 @@
             <i class="fa fa-star"></i>
             <i class="fa fa-star-o"></i>
           </div>
-          <p>F CFA 50.00</p>
+          <p>500 FCFA</p>
         </div>
       </div>
       <div class="row">
-        <div class="col-4 product-item" data-page="1"><a href="product-details.html">
+        <div class="col-4 product-item" data-page="1" data-popularity="0"><a href="product-details-oignon.html">
           <img src="images/produit-13.jpg" alt="" /></a>
           <h4>Oignons</h4>
           <div class="rating">
@@ -233,12 +237,12 @@
             <i class="fa fa-star"></i>
             <i class="fa fa-star-o"></i>
           </div>
-          <p>F CFA 50.00</p>
+          <p>800 FCFA</p>
         </div>
 
-        <div class="col-4 product-item" data-page="1"><a href="product-details.html">
+        <div class="col-4 product-item" data-page="1" data-popularity="0"><a href="product-details-sesame.html">
           <img src="images/produit-14.jpg" alt="" /></a>
-          <h4>Mil</h4>
+          <h4>Sesame</h4>
           <div class="rating">
             <i class="fa fa-star"></i>
             <i class="fa fa-star"></i>
@@ -246,10 +250,10 @@
             <i class="fa fa-star-half-o"></i>
             <i class="fa fa-star-o"></i>
           </div>
-          <p>F CFA 50.00</p>
+          <p>800 FCFA</p>
         </div>
 
-        <div class="col-4 product-item" data-page="1"><a href="product-details.html">
+        <div class="col-4 product-item" data-page="1" data-popularity="0"><a href="product-details.html">
           <img src="images/produit-15.png" alt="" /></a>
           <h4>Haricots Blancs</h4>
           <div class="rating">
@@ -259,9 +263,9 @@
             <i class="fa fa-star"></i>
             <i class="fa fa-star-half-o"></i>
           </div>
-          <p>F CFA 50.00</p>
+          <p>750 FCFA</p>
         </div>
-        <div class="col-4 product-item" data-page="1"><a href="product-details.html">
+        <div class="col-4 product-item" data-page="1" data-popularity="0"><a href="product-details.html">
           <img src="images/produit-16.png" alt="" /></a>
           <h4>Petits Pois</h4>
           <div class="rating">
@@ -271,11 +275,11 @@
             <i class="fa fa-star"></i>
             <i class="fa fa-star-o"></i>
           </div>
-          <p>F CFA 50.00</p>
+          <p>650 FCFA</p>
         </div>
       </div>
       <div class="row">
-        <div class="col-4 product-item" data-page="1"><a href="product-details.html">
+        <div class="col-4 product-item" data-page="1" data-popularity="0"><a href="product-details.html">
           <img src="images/produit-17.jpg" alt="" /></a>
           <h4>Niébé</h4>
           <div class="rating">
@@ -285,10 +289,10 @@
             <i class="fa fa-star"></i>
             <i class="fa fa-star-o"></i>
           </div>
-          <p>F CFA 50.00</p>
+          <p>550 FCFA</p>
         </div>
 
-        <div class="col-4 product-item" data-page="1"><a href="product-details.html">
+        <div class="col-4 product-item" data-page="1" data-popularity="0"><a href="product-details.html">
           <img src="images/produit-18.jpg" alt="" /></a>
           <h4>Lentilles</h4>
           <div class="rating">
@@ -298,10 +302,10 @@
             <i class="fa fa-star-half-o"></i>
             <i class="fa fa-star-o"></i>
           </div>
-          <p>F CFA 50.00</p>
+          <p>850 FCFA</p>
         </div>
 
-        <div class="col-4 product-item" data-page="1"><a href="product-details.html">
+        <div class="col-4 product-item" data-page="1" data-popularity="0"><a href="product-details.html">
           <img src="images/produit-19.png" alt="" /></a>
           <h4>Viande de Mouton</h4>
           <div class="rating">
@@ -311,9 +315,9 @@
             <i class="fa fa-star"></i>
             <i class="fa fa-star-half-o"></i>
           </div>
-          <p>F CFA 50.00</p>
+          <p>4000 FCFA</p>
         </div>
-        <div class="col-4 product-item" data-page="1"><a href="product-details.html">
+        <div class="col-4 product-item" data-page="1" data-popularity="0"><a href="product-details.html">
           <img src="images/produit-20.png" alt="" /></a>
           <h4>Bissap</h4>
           <div class="rating">
@@ -323,11 +327,11 @@
             <i class="fa fa-star"></i>
             <i class="fa fa-star-o"></i>
           </div>
-          <p>F CFA 50.00</p>
+          <p>1300 FCFA</p>
         </div>
       </div>
       <div class="row">
-        <div class="col-4 product-item" data-page="2"><a href="product-details.html">
+        <div class="col-4 product-item" data-page="2" data-popularity="0"><a href="product-details.html">
           <img src="images/produit-21.png" alt="" /></a>
           <h4>Pêche</h4>
           <div class="rating">
@@ -337,10 +341,10 @@
             <i class="fa fa-star"></i>
             <i class="fa fa-star-o"></i>
           </div>
-          <p>F CFA 50.00</p>
+          <p>1800 FCFA</p>
         </div>
 
-        <div class="col-4 product-item" data-page="2"><a href="product-details.html">
+        <div class="col-4 product-item" data-page="2" data-popularity="0"><a href="product-details.html">
           <img src="images/produit-22.png" alt="" /></a>
           <h4>Fruit de la passion</h4>
           <div class="rating">
@@ -350,10 +354,10 @@
             <i class="fa fa-star-half-o"></i>
             <i class="fa fa-star-o"></i>
           </div>
-          <p>F CFA 50.00</p>
+          <p>2000 FCFA</p>
         </div>
 
-        <div class="col-4 product-item" data-page="2"><a href="product-details.html">
+        <div class="col-4 product-item" data-page="2" data-popularity="0"><a href="product-details.html">
           <img src="images/produit-23.png" alt="" /></a>
           <h4>Framboises</h4>
           <div class="rating">
@@ -363,9 +367,9 @@
             <i class="fa fa-star"></i>
             <i class="fa fa-star-half-o"></i>
           </div>
-          <p>F CFA 50.00</p>
+          <p>1750 FCFA</p>
         </div>
-        <div class="col-4 product-item" data-page="2"><a href="product-details.html">
+        <div class="col-4 product-item" data-page="2" data-popularity="0"><a href="product-details.html">
           <img src="images/produit-24.png" alt="" /></a>
           <h4>Pastèque</h4>
           <div class="rating">
@@ -375,17 +379,125 @@
             <i class="fa fa-star"></i>
             <i class="fa fa-star-o"></i>
           </div>
-          <p>F CFA 50.00</p>
+          <p>2200 FCFA</p>
         </div>
       </div>
+
+      <div class="row">
+        <div class="col-4 product-item" data-page="2" data-popularity="0"><a href="product-details.html">
+          <img src="images/produit-25.png" alt="" /></a>
+          <h4>Limon</h4>
+          <div class="rating">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-o"></i>
+          </div>
+          <p>600 FCFA</p>
+        </div>
+
+        <div class="col-4 product-item" data-page="2" data-popularity="0"><a href="product-details.html">
+          <img src="images/produit-26.png" alt="" /></a>
+          <h4>Gombo</h4>
+          <div class="rating">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-half-o"></i>
+            <i class="fa fa-star-o"></i>
+          </div>
+          <p>450 FCFA</p>
+        </div>
+
+        <div class="col-4 product-item" data-page="2" data-popularity="0"><a href="product-details.html">
+          <img src="images/produit-27.png" alt="" /></a>
+          <h4>Pomme de terre</h4>
+          <div class="rating">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-half-o"></i>
+          </div>
+          <p>900 FCFA</p>
+        </div>
+        <div class="col-4 product-item" data-page="2" data-popularity="0"><a href="product-details.html">
+          <img src="images/produit-28.png" alt="" /></a>
+          <h4>Chou</h4>
+          <div class="rating">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-o"></i>
+          </div>
+          <p>650 FCFA</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-4 product-item" data-page="2" data-popularity="0"><a href="product-details.html">
+          <img src="images/produit-29.png" alt="" /></a>
+          <h4>Semoule de blé (Moukhamsa)</h4>
+          <div class="rating">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-o"></i>
+          </div>
+          <p>550 FCFA</p>
+        </div>
+
+        <div class="col-4 product-item" data-page="2" data-popularity="0"><a href="product-details.html">
+          <img src="images/produit-30.jpg" alt="" /></a>
+          <h4>Couscous de Mil (Thiéré)</h4>
+          <div class="rating">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-half-o"></i>
+            <i class="fa fa-star-o"></i>
+          </div>
+          <p>400 FCFA</p>
+        </div>
+
+        <div class="col-4 product-item" data-page="2" data-popularity="0"><a href="product-details.html">
+          <img src="images/produit-31.png" alt="" /></a>
+          <h4>Riz local</h4>
+          <div class="rating">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-half-o"></i>
+          </div>
+          <p>400 FCFA</p>
+        </div>
+        <div class="col-4 product-item" data-page="2" data-popularity="0"><a href="product-details.html">
+          <img src="images/produit-32.jpg" alt="" /></a>
+          <h4>Pois chiches</h4>
+          <div class="rating">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-o"></i>
+          </div>
+          <p>500 FCFA</p>
+        </div>
+      </div>
+      </div>
+      
 
       <div class="pagination-container">  
        <div class="page-btn">
          <span onclick="previousPage()">&#8592;</span>
          <span onclick="goToPage(1)">1</span>
          <span onclick="goToPage(2)">2</span>
-         <span onclick="goToPage(3)">3</span>
-         <span onclick="goToPage(4)">4</span>
+         <!--<span onclick="goToPage(3)">3</span>
+         <span onclick="goToPage(4)">4</span> -->
          <span onclick="nextPage()">&#8594;</span>
        </div>
       </div>
@@ -516,6 +628,94 @@
         // Rediriger l'utilisateur vers la page de connexion
       window.location.href = "account.html";
       }
+
+      // Récupérer les éléments du DOM nécessaires
+      const sortSelect = document.getElementById('sort-select');
+      const productsContainer = document.getElementById('products-container');
+      const productItems = Array.from(productsContainer.querySelectorAll('.product-item'));
+
+      // Fonction pour simuler l'augmentation de la popularité
+      function simulatePopularityIncrease(product) {
+        const currentPopularity = parseInt(product.dataset.popularity);
+        product.dataset.popularity = currentPopularity + 1;
+      }
+
+      // Fonction pour diviser les produits en groupes de 4
+      function createProductRows(items) {
+        const rowDiv = document.createElement('div');
+        rowDiv.classList.add('row');
+        rowDiv.classList.add('row-products');
+        items.forEach((item) => {
+          rowDiv.appendChild(item);
+        });
+        return [rowDiv];
+      }
+
+      // Fonction pour mettre à jour l'affichage des produits
+      function updateProductDisplay(items) {
+        // Supprimer les produits existants
+        while (productsContainer.firstChild) {
+          productsContainer.removeChild(productsContainer.firstChild);
+        }
+        // Créer les lignes et afficher les produits
+        const rows = createProductRows(items);
+        rows.forEach((row) => {
+          productsContainer.appendChild(row);
+        });
+      }  
+
+
+      // Ajouter un écouteur d'événement sur chaque produit pour augmenter la popularité lors d'un clic (à adapter selon votre utilisation réelle)
+      productItems.forEach((item) => {
+        item.addEventListener('click', () => {
+          simulatePopularityIncrease(item);
+        });
+      });
+
+      // Ajouter un écouteur d'événement sur le "select"
+      sortSelect.addEventListener('change', () => {
+        const selectedValue = sortSelect.value;
+        let sortedItems;
+
+        // Effectuer le tri en fonction de l'option sélectionnée
+        switch (selectedValue) {
+          case 'price':
+            sortedItems = productItems.slice().sort((a, b) => {
+              const priceA = parseInt(a.querySelector('p').innerText);
+              const priceB = parseInt(b.querySelector('p').innerText);
+              return priceA - priceB;
+            });
+            break;
+          case 'popularity':
+            sortedItems = productItems.slice().sort((a, b) => {
+              const popularityA = parseInt(a.dataset.popularity);
+              const popularityB = parseInt(b.dataset.popularity);
+              return popularityB - popularityA; // Tri décroissant par popularité
+            });
+            break;
+          case 'rating':
+            sortedItems = productItems.slice().sort((a, b) => {
+              const ratingA = a.querySelectorAll('.fa-star').length;
+              const ratingB = b.querySelectorAll('.fa-star').length;
+              return ratingB - ratingA; // Tri décroissant par notation
+            });
+            break;
+          default:
+          // Tri par défaut : Ne rien faire, conserver l'ordre d'origine
+          sortedItems = productItems;
+        }
+
+        // Vider le conteneur de produits existant
+        while (productsContainer.firstChild) {
+          productsContainer.removeChild(productsContainer.firstChild);
+        }
+
+        // Réinsérer les éléments triés dans le bon ordre
+        sortedItems.forEach((item) => {
+          productsContainer.appendChild(item);
+        });
+      });
+
 
     </script>
   </body>

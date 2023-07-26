@@ -38,6 +38,8 @@
       padding: 20px;
     }
   </style>
+  
+
   <body>
     <div class="container">
       <div class="navbar">
@@ -55,6 +57,7 @@
         </nav>
         <a href="cart.html"><img src="images/cart.png" alt="" width="30px" height="30px"></a>
         <img src="images/menu.png" alt="" class="menu-icon" onclick="menutoggle()">
+        <span id="cart-item-count">0</span>
         <div id="login-section">
           <div class="login-content">
             <p id="login-message">Vous devez être connecté pour valider votre commande.</p>
@@ -174,7 +177,8 @@
         /// Variables globales
         let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
         let loggedIn = false;
-        // Sélection d'un article et ajout au panier
+
+      // Sélection d'un article et ajout au panier
       function addToCart(productName, price) {
         console.log(`Ajout du produit ${productName} au panier`);
         const product = {
@@ -183,15 +187,33 @@
           quantity: 1
         };
 
+        // Mise à jour du cookie pour stocker le nombre d'articles dans le panier
+        const cartItemCount = getCartItemCount(); // Récupérer le nombre actuel d'articles dans le panier
+        setCartItemCount(cartItemCount + 1); // Incrémenter le nombre d'articles dans le panier
+        
+        
         cartItems.push(product);
         localStorage.setItem('cartItems', JSON.stringify(cartItems));
         console.log(cartItems); // pour vérifier le contenu du panier
         updateCartDisplay();
       }
 
+      function updateCartItemCount() {
+        const cartItemCountElement = document.getElementById('cart-item-count');
+        const itemCount = cartItems.length; // Récupérer le nombre de produits dans le panier
+        cartItemCountElement.textContent = itemCount;
+      }  
+
         // Mise à jour de l'affichage du panier
-      function updateCartDisplay() {
+        function updateCartDisplay() {
         const cartTable = document.getElementById('cart-table');
+
+        // Mettre à jour le nombre de produits affiché dans le logo du panier
+        updateCartItemCount();
+
+        // Appel initial pour mettre à jour le nombre de produits dans le logo du panier au chargement de la page
+        updateCartItemCount();
+      
 
         // Réinitialisation de la table du panier
         cartTable.innerHTML = `
@@ -227,8 +249,8 @@
 
         subtotal += item.price * item.quantity;
       });
+  
 
-        
       // Mise à jour du total
       const subtotalElement = document.getElementById('subtotal');
       const totalElement = document.getElementById('total');
@@ -240,183 +262,183 @@
       const hasValidOrder = isLoggedIn && orderValidated; // Supposons que `orderValidated` est une variable qui stocke l'état de validation de la commande
 
 
-    // Vider le panier si l'utilisateur n'est pas connecté ou s'il n'a pas de commande valide
-    if (!isLoggedIn || !hasValidOrder) {
-      cartItems = [];
-      localStorage.setItem('cartItems', JSON.stringify(cartItems));
-    
-      // Afficher l'image le message et le bouton
-      const image = document.createElement('img');
-      image.className = 'myImageClass';
-      image.src = "images/panier-vide.png";
-      image.alt = "Image de panier vide";
-
-      const message = document.createElement('p');
-      message.textContent = "Votre panier est vide! Parcourez nos produits et découvrez nos meilleures offres!";
-  
-      const button = document.createElement('button');
-      button.className = 'myButtonClass';
-      button.textContent = "Commencer vos achats";
-      button.addEventListener('click', () => {
-        // Rediriger vers la page des produits
-        window.location.href = "account.html";
-      });
-
-      const container = document.getElementById('panier-container');
-      container.appendChild(image);
-      container.appendChild(message);
-      container.appendChild(button);
-      
-
-      }
-    } 
-
-    function hasValidOrder() {
-      return true;
-    }
-
-
-    function updatePageDisplay() {
-      const cartPage = document.querySelector('.small-container.cart-page');
-
-      if (loggedIn) {
-        // Si l'utilisateur est connecté, rendre la page du panier visible
-        cartPage.style.display = 'block';
-      } else {
-        // Si l'utilisateur n'est pas connecté, cacher la page du panier
-        cartPage.style.display = 'none';
-      }
-    }       
-
-      // Mise à jour de la quantité d'un article dans le panier
-    function updateQuantity(productName, quantity) {
-      const product = cartItems.find(item => item.name === productName);
-      product.quantity = parseInt(quantity, 10);
-      localStorage.setItem('cartItems', JSON.stringify(cartItems));
-      updateCartDisplay();
-    }
-
-      // Suppression d'un article du panier
-    function removeItem(productName) {
-      cartItems = cartItems.filter(item => item.name !== productName);
-      localStorage.setItem('cartItems', JSON.stringify(cartItems));
-      updateCartDisplay();
-    }
-
-      // Validation de la commande
-    function checkout() {
-      if (loggedIn) {
-      // Le client est connecté, continuer avec la validation de la commande
-        console.log("Commande validée !");
-      } else {
-        // Le client n'est pas connecté, ouvrir la fenêtre modale de connexion
-        openLoginModal();
-
-        // Réinitialiser le panier si la commande n'a pas été validée
+      // Vider le panier si l'utilisateur n'est pas connecté ou s'il n'a pas de commande valide
+      if (!isLoggedIn || !hasValidOrder) {
         cartItems = [];
         localStorage.setItem('cartItems', JSON.stringify(cartItems));
-        updateCartDisplay();
+    
+        // Afficher l'image le message et le bouton
+        const image = document.createElement('img');
+        image.className = 'myImageClass';
+        image.src = "images/panier-vide.png";
+        image.alt = "Image de panier vide";
+
+        const message = document.createElement('p');
+        message.textContent = "Votre panier est vide! Parcourez nos produits et découvrez nos meilleures offres!";
   
+        const button = document.createElement('button');
+        button.className = 'myButtonClass';
+        button.textContent = "Commencer vos achats";
+        button.addEventListener('click', () => {
+          // Rediriger vers la page des produits
+          window.location.href = "account.html";
+      });
+
+          const container = document.getElementById('panier-container');
+          container.appendChild(image);
+          container.appendChild(message);
+          container.appendChild(button);
+
+        }
+    
       }
-    }
+      function hasValidOrder() {
+        return true;
+      }
 
-    // Ouvrir la fenêtre modale de connexion
-    function openLoginModal() {
-      const modal = document.getElementById('login-modal');
-      modal.style.display = 'block';
-    }
 
-    // Fermer la fenêtre modale de connexion
-    function closeLoginModal() {
-      const modal = document.getElementById('login-modal');
-      modal.style.display = 'none';
-    }
+      function updatePageDisplay() {
+        const cartPage = document.querySelector('.small-container.cart-page');
 
-    // Gérer la soumission du formulaire de connexion
-    function handleLoginSubmit() {
-      const usernameInput = document.getElementById('username');
-      const passwordInput = document.getElementById('password');
-      const loginErrorMessage = document.getElementById('login-error-message');
-      updatePageDisplay();
+        if (loggedIn) {
+          // Si l'utilisateur est connecté, rendre la page du panier visible
+          cartPage.style.display = 'block';
+        } else {
+          // Si l'utilisateur n'est pas connecté, cacher la page du panier
+          cartPage.style.display = 'none';
+        }
+      }       
 
-      // Exemple simple : vérification basée sur des valeurs prédéfinies
-      if (usernameInput.value === 'john' && passwordInput.value === 'password') {
-        loggedIn = true;
-        localStorage.setItem('loggedIn', JSON.stringify(loggedIn)); // Enregistrer l'état de connexion
-        closeLoginModal();
+      // Mise à jour de la quantité d'un article dans le panier
+      function updateQuantity(productName, quantity) {
+        const product = cartItems.find(item => item.name === productName);
+        product.quantity = parseInt(quantity, 10);
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        updateCartDisplay();
+      }
+
+      // Suppression d'un article du panier
+      function removeItem(productName) {
+        cartItems = cartItems.filter(item => item.name !== productName);
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        updateCartDisplay();
+      }
+
+      // Validation de la commande
+      function checkout() {
+        if (loggedIn) {
+          // Le client est connecté, continuer avec la validation de la commande
+          console.log("Commande validée !");
+        } else {
+          // Le client n'est pas connecté, ouvrir la fenêtre modale de connexion
+          openLoginModal();
+
+          // Réinitialiser le panier si la commande n'a pas été validée
+          cartItems = [];
+          localStorage.setItem('cartItems', JSON.stringify(cartItems));
+          updateCartDisplay();
+  
+        }
+      }
+
+      // Ouvrir la fenêtre modale de connexion
+      function openLoginModal() {
+        const modal = document.getElementById('login-modal');
+        modal.style.display = 'block';
+      }
+
+      // Fermer la fenêtre modale de connexion
+      function closeLoginModal() {
+        const modal = document.getElementById('login-modal');
+        modal.style.display = 'none';
+      }
+
+      // Gérer la soumission du formulaire de connexion
+      function handleLoginSubmit() {
+        const usernameInput = document.getElementById('username');
+        const passwordInput = document.getElementById('password');
+        const loginErrorMessage = document.getElementById('login-error-message');
+        updatePageDisplay();
+
+        // Exemple simple : vérification basée sur des valeurs prédéfinies
+        if (usernameInput.value === 'john' && passwordInput.value === 'password') {
+          loggedIn = true;
+          localStorage.setItem('loggedIn', JSON.stringify(loggedIn)); // Enregistrer l'état de connexion
+          closeLoginModal();
+          updateLoginStatus(); // Met à jour l'interface utilisateur pour refléter le nouveau statut de connexion
+          checkout(); // Continuer avec la validation de la commande
+          console.log("Utilisateur connecté");
+        } else {
+          loginErrorMessage.textContent = "Nom d'utilisateur ou mot de passe incorrect.";
+          console.log("Veuillez vous connecter pour afficher votre panier.");
+        }
+      }
+
+      // Fonction pour stocker le montant total dans le localStorage
+      function storeTotalAmount() {
+        const totalElement = document.getElementById('total');
+        const totalAmount = totalElement.textContent.trim();
+        localStorage.setItem('totalAmount', totalAmount);
+      }
+
+      window.addEventListener('DOMContentLoaded', function() {
+        // Récupérer le montant total à partir du localStorage et l'afficher dans la page "cart.html"
+        const totalElement = document.getElementById('total');
+        const storedTotalAmount = localStorage.getItem('totalAmount');
+        if (storedTotalAmount) {
+          totalElement.textContent = storedTotalAmount;
+        }
+      });
+
+      // Mise à jour du statut de connexion dans l'interface utilisateur
+      function updateLoginStatus() {
+        const loginButton = document.getElementById('login-button');
+        const logoutButton = document.getElementById('logout-button');
+        const loginMessage = document.getElementById('login-message');
+
+        loggedIn = JSON.parse(localStorage.getItem('loggedIn')) || false; // Récupérer l'état de connexion depuis le localStorage
+
+        if (loggedIn) {
+          loginButton.style.display = 'none';
+          logoutButton.style.display = 'block';
+          loginMessage.textContent = 'Utilisateur connecté';
+        } else {
+          loginButton.style.display = 'block';
+          logoutButton.style.display = 'none';
+          loginMessage.textContent = 'Vous devez être connecté pour valider votre commande';
+        }
+      }
+      function handleLogout() {
+
+        // Vider le panier
+        cartItems = [];
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+
+        // Supprimer le statut de connexion
+        localStorage.removeItem('loggedIn');
+
+        loggedIn = false; // Réinitialise le statut de connexion
+
         updateLoginStatus(); // Met à jour l'interface utilisateur pour refléter le nouveau statut de connexion
-        checkout(); // Continuer avec la validation de la commande
-        console.log("Utilisateur connecté");
-      } else {
-        loginErrorMessage.textContent = "Nom d'utilisateur ou mot de passe incorrect.";
-        console.log("Veuillez vous connecter pour afficher votre panier.");
-      }
-    }
-
-    // Fonction pour stocker le montant total dans le localStorage
-    function storeTotalAmount() {
-      const totalElement = document.getElementById('total');
-      const totalAmount = totalElement.textContent.trim();
-      localStorage.setItem('totalAmount', totalAmount);
-    }
-
-    window.addEventListener('DOMContentLoaded', function() {
-    // Récupérer le montant total à partir du localStorage et l'afficher dans la page "cart.html"
-      const totalElement = document.getElementById('total');
-      const storedTotalAmount = localStorage.getItem('totalAmount');
-      if (storedTotalAmount) {
-        totalElement.textContent = storedTotalAmount;
-      }
-    });
-
-    // Mise à jour du statut de connexion dans l'interface utilisateur
-    function updateLoginStatus() {
-      const loginButton = document.getElementById('login-button');
-      const logoutButton = document.getElementById('logout-button');
-      const loginMessage = document.getElementById('login-message');
-
-      loggedIn = JSON.parse(localStorage.getItem('loggedIn')) || false; // Récupérer l'état de connexion depuis le localStorage
-
-      if (loggedIn) {
-        loginButton.style.display = 'none';
-        logoutButton.style.display = 'block';
-        loginMessage.textContent = 'Utilisateur connecté';
-      } else {
-        loginButton.style.display = 'block';
-        logoutButton.style.display = 'none';
-        loginMessage.textContent = 'Vous devez être connecté pour valider votre commande';
-      }
-    }
-    function handleLogout() {
-
-      // Vider le panier
-      cartItems = [];
-      localStorage.setItem('cartItems', JSON.stringify(cartItems));
-
-      // Supprimer le statut de connexion
-      localStorage.removeItem('loggedIn');
-
-      loggedIn = false; // Réinitialise le statut de connexion
-
-      updateLoginStatus(); // Met à jour l'interface utilisateur pour refléter le nouveau statut de connexion
-      updateCartDisplay();
+        updateCartDisplay();
       
-      console.log("Utilisateur déconnecté");
-      updatePageDisplay();
-    }
+        console.log("Utilisateur déconnecté");
+        updatePageDisplay();
+      }
 
-    window.onload = function() {
-      // Mise à jour initiale du statut de connexion dans l'interface utilisateur
-      updateLoginStatus();
-      updateCartDisplay();
-      updatePageDisplay();
-    }
+      window.onload = function() {
+       // Mise à jour initiale du statut de connexion dans l'interface utilisateur
+       updateLoginStatus();
+       updateCartDisplay();
+       updatePageDisplay();
+     }
 
-    // Récupérer les produits achetés depuis votre source de données (exemple : tableau cartItems)
-    const purchasedItems = cartItems;
+     // Récupérer les produits achetés depuis votre source de données (exemple : tableau cartItems)
+     const purchasedItems = cartItems;
 
-    // Stocker les produits achetés dans le localStorage
-    localStorage.setItem('purchasedItems', JSON.stringify(purchasedItems));
+     // Stocker les produits achetés dans le localStorage
+     localStorage.setItem('purchasedItems', JSON.stringify(purchasedItems));
+
 
     </script>
     

@@ -157,7 +157,7 @@ h1 {
         invoiceNumber = 1;
       } else {
         // Sinon, convertir le numéro de facture en nombre et l'incrémenter
-        invoiceNumber = parseInt(invoiceNumber) + 1;
+        invoiceNumber = parseInt(invoiceNumber) - 1;
       }
 
       // Stocker le nouveau numéro de facture dans le localStorage

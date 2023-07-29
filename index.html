@@ -33,15 +33,9 @@
               <!-- TODo: 22:20 -->
             </ul>
           </nav>
-          <a href="cart.html"
-            ><img src="images/cart.png" alt="" width="30px" height="30px"
-          /></a>
-          <img
-            src="images/menu.png"
-            alt=""
-            class="menu-icon"
-            onclick="menutoggle()"
-          />
+          <a href="cart.html"><img src="images/cart.png" alt="" width="30px" height="30px"/></a>
+          <img src="images/menu.png" alt="" class="menu-icon" onclick="menutoggle()"/>
+          <span id="cart-item-count">0</span>
         </div>
         <div class="search-container">
           <input type="text" id="searchInput" placeholder="Rechercher..." />
@@ -57,13 +51,13 @@
           <div class="item" data-url="product-details-nxdecajou.html">Noix de Cajou</div>
           <div class="item" data-url="product-details-papaye.html">Papayes</div>
           <div class="item" data-url="product-details-oeufsdepoule.html">Oeufs</div>
-          <div class="item">Maïs</div>
-          <div class="item">Maad</div>
-          <div class="item">Bouye</div>
-          <div class="item">Carottes</div>
-          <div class="item">Oignons</div>
-          <div class="item">Mil</div>
-          <div class="item">Haricots Blancs</div>
+          <div class="item" data-url="product-details-maïs.html">Maïs</div>
+          <div class="item" data-url="product-details-maad.html">Maad</div>
+          <div class="item" data-url="product-details-bouye.html">Bouye</div>
+          <div class="item" data-url="product-details-carotte.html">Carottes</div>
+          <div class="item" data-url="product-details-oignon.html">Oignons</div>
+          <div class="item" data-url="product-details-sesame.html">Sesame</div>
+          <div class="item" >Haricots Blancs</div>
           <div class="item">Petits Pois</div>
           <div class="item">Niébé</div>
           <div class="item">Lentilles</div>
@@ -71,8 +65,18 @@
           <div class="item">Bissap</div>
           <div class="item">Pêche</div>
           <div class="item">Fruit de le passion</div>
-          <div class="item">Framboises</div>
+          <div class="item">Framboise</div>
           <div class="item">Pastèque</div>
+          <div class="item">Limon</div>
+          <div class="item">Gombo</div>
+          <div class="item">Pomme de terre</div>
+          <div class="item">Choux</div>
+          <div class="item">Semoule de blé (Moukhamsa)</div>
+          <div class="item">Couscous de Mil (Tiéré)</div>
+          <div class="item">Riz local</div>
+          <div class="item">Pois chiches</div>
+          
+
         </div>  
 
         <div class="row">
@@ -120,20 +124,23 @@
         <h2 class="title">Catégories</h2>
         <div class="row">
           <div class="col-3">
-            <img src="images/category-11.png" alt="" />
-            <h3><a href="catégorie-fr-leg.html"> Fruits et Légumes </a></h3>
+            <a href="catégorie-fr-leg.html">
+            <img src="images/category-11.png" alt="" /></a>
+            <h3>Fruits et Légumes </h3>
             <h5> Découvrez notre sélection de fruits et légumes frais,
               cueillis à la perfection pour vous offrir une explosion de saveurs dans chaque bouchée.</h5>
           </div>
-          <div class="col-3">
-            <img src="images/category-22.png" alt="" />
-            <h3> Céréales et Légumineuses </h3>
+          <div class="col-3">   
+            <a href="catégorie-cer-leg.html">       
+            <img src="images/category-22.png" alt="" /></a>
+            <h3>Céréales et Légumineuses</h3>
             <h5> Plongez dans un monde de grains délicieux et nutritifs avec notre gamme de céréales. 
               Nous avons tout ce dont vous avez besoin pour un mode de vie équilibré et énergétique.
             </h5>
           </div>
           <div class="col-3">
-            <img src="images/category-33.png" alt="" />
+            <a href="catégorie-pro-dor-an.html">
+            <img src="images/category-33.png" alt="" /></a>
             <h3>Produits d'origine animale</h3>
             <h5> Découvrez notre sélection exquise de produits d'origine animale. Faites
                 l'expérience d'une alimentation de première qualité et soutenez une agriculture durable..
@@ -142,7 +149,7 @@
         </div>
       </div>
     </div>
-    <!----- Featurd Products--------->
+    <!----- Produits Populaires--------->
     <div class="small-container">
       <h2 class="title">Produits en Vedette</h2>
       <div class="row">
@@ -158,7 +165,7 @@
             <i class="fa fa-star"></i>
             <i class="fa fa-star-o"></i>
           </div>
-          <p>F CFA 50.00</p>
+          <p>400 FCFA</p>
         </div>
 
         <div class="col-4">
@@ -172,7 +179,7 @@
             <i class="fa fa-star-half-o"></i>
             <i class="fa fa-star-o"></i>
           </div>
-          <p> F CFA 50.00</p>
+          <p>600 FCFA</p>
         </div>
 
         <div class="col-4">
@@ -186,7 +193,7 @@
             <i class="fa fa-star"></i>
             <i class="fa fa-star-half-o"></i>
           </div>
-          <p>F CFA 50.00</p>
+          <p>1000 FCFA</p>
         </div>
         <div class="col-4">
           <a href="product-details-poulets.html">
@@ -199,7 +206,7 @@
             <i class="fa fa-star"></i>
             <i class="fa fa-star-o"></i>
           </div>
-          <p> F CFA 50.00</p>
+          <p>2500 FCFA</p>
         </div>
       </div>
       <h2 class="title">Les Plus Récents</h2>
@@ -215,7 +222,7 @@
             <i class="fa fa-star"></i>
             <i class="fa fa-star-o"></i>
           </div>
-          <p> F CFA 50.00</p>
+          <p>3800 FCFA</p>
         </div>
 
         <div class="col-4">
@@ -229,7 +236,7 @@
             <i class="fa fa-star-half-o"></i>
             <i class="fa fa-star-o"></i>
           </div>
-          <p>F CFA 50.00</p>
+          <p>4800 FCFA</p>
         </div>
 
         <div class="col-4">
@@ -243,7 +250,7 @@
             <i class="fa fa-star"></i>
             <i class="fa fa-star-half-o"></i>
           </div>
-          <p>F CFA 50.00</p>
+          <p>1300 FCFA</p>
         </div>
         <div class="col-4">
           <a href="product-details-oeufsdepoule.html">
@@ -256,7 +263,7 @@
             <i class="fa fa-star"></i>
             <i class="fa fa-star-o"></i>
           </div>
-          <p>F CFA 50.00</p>
+          <p>3000 FCFA</p>
         </div>
       </div>
       <div class="row">
@@ -271,7 +278,7 @@
             <i class="fa fa-star"></i>
             <i class="fa fa-star-o"></i>
           </div>
-          <p>F CFA 50.00</p>
+          <p>700 FCFA</p>
         </div>
 
         <div class="col-4">
@@ -285,7 +292,7 @@
             <i class="fa fa-star-half-o"></i>
             <i class="fa fa-star-o"></i>
           </div>
-          <p>F CFA 50.00</p>
+          <p>1200 FCFA</p>
         </div>
 
         <div class="col-4">
@@ -299,7 +306,7 @@
             <i class="fa fa-star"></i>
             <i class="fa fa-star-half-o"></i>
           </div>
-          <p>F CFA 50.00</p>
+          <p>1300 FCFA</p>
         </div>
         <div class="col-4">
           <a href="product-details-carotte.html">
@@ -312,7 +319,7 @@
             <i class="fa fa-star"></i>
             <i class="fa fa-star-o"></i>
           </div>
-          <p>F CFA 50.00</p>
+          <p>2000 FCFA</p>
         </div>
       </div>
     </div>
@@ -337,7 +344,7 @@
         </div>
       </div>
     </div>
-
+    <!------Chat----->
     <div id="chat-container">
       <div id="chat-messages"></div>
       <div id="chat-input">
@@ -355,7 +362,7 @@
 
             <p>
               Je suis agréablement surprise par la variété de fruits et légumes proposés par 
-              ces vendeurs. J'ai pu trouver des produits locaux et biologiques, ce qui était  
+              ces vendeurs. J'ai pu trouver des produits locaux, ce qui était  
               vraiment important pour moi. Je continuerai à soutenir les agriculteurs.
             </p>
             <div class="rating">
@@ -374,7 +381,7 @@
 
             <p>
               Les fruits et légumes que j'ai achetés étaient d'une qualité exceptionnelle !  
-              Ils étaient frais, juteux et délicieusement savoureux.
+              Ils étaient frais, juteux et délicieusement savoureux.<br>
               Je suis vraiment satisfait de mon achat et je recommande vivement ces produits. 
             </p>
             <div class="rating">
@@ -392,9 +399,9 @@
             <i class="fa fa-quote-left"></i>
 
             <p>
-              Je suis ravie d'avoir choisi ce marché pour mes achats de fruits et légumes.
-              Non seulement j'ai bénéficié d'une large gamme de produits frais, mais le service
-              était également excellent et j'ai apprécié l'attention portée à la qualité des produits.
+              Je suis ravie d'avoir fait mes achats de fruits et légumes sur ce site.
+              J'ai bénéficié d'une large gamme de produits frais et le service
+              était également excellent. J'ai apprécié l'attention portée à la qualité des produits.
             </p>
             <div class="rating">
               <i class="fa fa-star"></i>
@@ -646,5 +653,6 @@
      
 
     </script>
+    <script src="cart.js"></script>
   </body>
 </html>

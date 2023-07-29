@@ -15,6 +15,46 @@
     />
     
   </head>
+  <style>
+    /* Style pour la fenêtre modale */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 3px solid #888;
+    width: 70%;
+  }
+
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .header {
+  background: radial-gradient(#fff, #4a1e55);
+  } 
+  </style>
 
   <body>
     <div class="header">
@@ -70,8 +110,9 @@
 
               <form id="LoginForm" class="input-group">
                   <input type="text" id="username" class="input-field" placeholder="Nom d'utilisateur" required>
-                  <input type="password" id="password" class="input-field" placeholder="Mot de passe" required>
-                  <button type="submit" class="submit-btn">Se Connecter</button>
+                  <input type="password" id="password" class="input-field" placeholder="Mot de passe" required> 
+                  <button type="submit" class="submit-btn">Se Connecter</button> <br>
+                  <a href="#" onclick="showForgotPasswordModal()">Mot de passe oublié ?</a> 
                   <p id="login-error-message" style="color:rgb(255, 0, 0);"></p>
               </form>
   
@@ -87,6 +128,17 @@
         </div>
       </div>
     </div>
+
+    <!-- Fenêtre modale pour la réinitialisation du mot de passe -->
+    <div id="forgotPasswordModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeForgotPasswordModal()">&times;</span>
+        <h2>Réinitialisation du mot de passe</h2>
+        <p>Entrez votre email pour réinitialiser votre mot de passe :</p>
+        <input type="email" id="forgotPasswordEmail" placeholder="Votre Email" required>
+        <button onclick="sendPasswordResetEmail()">Ok</button>
+      </div>
+    </div>    
 
     <!-- Footer -->
     <div class="footer">
@@ -149,13 +201,13 @@
     </script>
       <!-- 
       js for toggle form -->
-      <script>
+    <script>
        
-        var LoginForm = document.getElementById("LoginForm");
-        var RegForm = document.getElementById("RegForm");
-        var indicator = document.getElementById("indicator");
-        var formBox = document.querySelector('.form-box');
-        var loggedInMessage = document.getElementById('loggedInMessage');
+      var LoginForm = document.getElementById("LoginForm");
+      var RegForm = document.getElementById("RegForm");
+      var indicator = document.getElementById("indicator");
+      var formBox = document.querySelector('.form-box');
+      var loggedInMessage = document.getElementById('loggedInMessage');
 
       function register() {
         LoginForm.style.transform = "translateX(-300px)";
@@ -240,6 +292,30 @@
 
         checkUserLoggedIn();
       });
+
+      // Ouvrir la fenêtre modale pour la réinitialisation du mot de passe
+      function showForgotPasswordModal() {
+        const modal = document.getElementById('forgotPasswordModal');
+        modal.style.display = 'block';
+      }
+
+      // Fermer la fenêtre modale
+      function closeForgotPasswordModal() {
+        const modal = document.getElementById('forgotPasswordModal');
+        modal.style.display = 'none';
+      }
+
+      // Envoyer l'email de réinitialisation du mot de passe
+      function sendPasswordResetEmail() {
+        const email = document.getElementById('forgotPasswordEmail').value;
+
+        // Vous pouvez ajouter ici le code pour envoyer l'email de réinitialisation du mot de passe
+
+        alert(`Un email de réinitialisation du mot de passe a été envoyé à ${email}.`);
+
+        // Fermer la fenêtre modale après avoir cliqué sur "Ok"
+        closeForgotPasswordModal();
+      }
 
     </script>      
   </body>

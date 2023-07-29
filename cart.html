@@ -80,12 +80,12 @@
         </table>
         <div class="total-price">
           <table>
-            <tr>
+            <!--<tr>
               <td>Total:</td>
               <td id="subtotal"> 0. FCFA</td>
-            </tr>
+            </tr>-->
             <tr>
-              <td>Total Général:</td>
+              <td>Montant Total:</td>
               <td id="total"> 0. FCFA</td>
             </tr>
             <tr>
@@ -235,14 +235,14 @@
             <img src="images/${item.name.toLowerCase()}.jpg" alt="${item.name}" onerror="this.src='images/default.jpg'"/>
             <div>
               <p>${item.name}</p>
-              <small>Prix: ${item.price.toFixed(2)} FCFA</small>
+              <small>Prix: ${item.price.toFixed()} FCFA</small>
               <br />
               <a href="#" onclick="removeItem('${item.name}')">Supprimer</a>
             </div>
           </div>
           </td>
           <td><input type="number" value="${item.quantity}" min="1" onchange="updateQuantity('${item.name}', this.value)" /></td>
-          <td>${(item.price * item.quantity).toFixed(2)}FCFA</td>
+          <td>${(item.price * item.quantity).toFixed()} FCFA</td>
         `;
 
         cartTable.appendChild(row);
@@ -255,8 +255,8 @@
       const subtotalElement = document.getElementById('subtotal');
       const totalElement = document.getElementById('total');
 
-      subtotalElement.textContent = `${subtotal.toFixed(2)}FCFA`;
-      totalElement.textContent = `${subtotal.toFixed(2)}FCFA`;
+      //subtotalElement.textContent = `${subtotal.toFixed()} FCFA`;
+      totalElement.textContent = `${subtotal.toFixed()} FCFA`;
 
       const isLoggedIn = loggedIn;
       const hasValidOrder = isLoggedIn && orderValidated; // Supposons que `orderValidated` est une variable qui stocke l'état de validation de la commande

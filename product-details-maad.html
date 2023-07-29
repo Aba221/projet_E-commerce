@@ -22,6 +22,7 @@
       }
     </style>
     <script src="rellax.min.js"></script>
+    <script src="cart.js"></script>
   </head>
   <body>
     <div class="container">
@@ -41,15 +42,9 @@
             <!-- TODo: 22:20 -->
           </ul>
         </nav>
-        <a href="cart.html"
-          ><img src="images/cart.png" alt="" width="30px" height="30px"
-        /></a>
-        <img
-          src="images/menu.png"
-          alt=""
-          class="menu-icon"
-          onclick="menutoggle()"
-        />
+        <a href="cart.html"><img src="images/cart.png" alt="" width="30px" height="30px"/></a>
+        <img src="images/menu.png" alt="" class="menu-icon" onclick="menutoggle()"/>
+        <span id="cart-item-count">0</span>
       </div>
     </div>
 
@@ -114,8 +109,8 @@
     <div class="small-container">
       <div class="row">
         <div class="col-4">
-          <img src="images/produit-4.png" alt="" />
-          <h4>Poulets</h4>
+          <img src="images/produit-11.png" alt="" />
+          <h4>Bouye</h4>
           <div class="rating">
             <i class="fa fa-star"></i>
             <i class="fa fa-star"></i>
@@ -123,12 +118,12 @@
             <i class="fa fa-star"></i>
             <i class="fa fa-star-o"></i>
           </div>
-          <p> F CFA 50</p>
+          <p>1300 FCFA</p>
         </div>
 
         <div class="col-4">
-          <img src="images/produit-5.png" alt="" />
-          <h4>Viande de Boeuf</h4>
+          <img src="images/produit-21.png" alt="" />
+          <h4>Pêche</h4>
           <div class="rating">
             <i class="fa fa-star"></i>
             <i class="fa fa-star"></i>
@@ -136,12 +131,12 @@
             <i class="fa fa-star-half-o"></i>
             <i class="fa fa-star-o"></i>
           </div>
-          <p> F CFA 50</p>
+          <p>1800 FCFA</p>
         </div>
 
         <div class="col-4">
-          <img src="images/produit-8.png" alt="" />
-          <h4>Oeufs</h4>
+          <img src="images/produit-23.png4" alt="" />
+          <h4>Framboises</h4>
           <div class="rating">
             <i class="fa fa-star"></i>
             <i class="fa fa-star"></i>
@@ -149,11 +144,11 @@
             <i class="fa fa-star"></i>
             <i class="fa fa-star-half-o"></i>
           </div>
-          <p>F CFA 50</p>
+          <p>1750 FCFA</p>
         </div>
         <div class="col-4">
-          <img src="images/produit-19.png" alt="" />
-          <h4>Viande de Mouton</h4>
+          <img src="images/produit-24.png" alt="" />
+          <h4>Pastèque</h4>
           <div class="rating">
             <i class="fa fa-star"></i>
             <i class="fa fa-star"></i>
@@ -161,7 +156,7 @@
             <i class="fa fa-star"></i>
             <i class="fa fa-star-o"></i>
           </div>
-          <p>F CFA 50</p>
+          <p>2200 FCFA</p>
         </div>
       </div>
     </div>
@@ -251,6 +246,59 @@
           productDetails.style.display = 'none';
         }
       }
+
+      function addToCart(productName, price) { 
+        // Récupérer des articles de panier existants à partir du stockage local
+        let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+        let existingItem = cartItems.find(item => item.name === productName);
+
+        if (existingItem) {
+          // If the product exists in the cart, update its quantity and total price
+          existingItem.quantity += 1;
+          existingItem.totalPrice = existingItem.quantity * price;
+        } else {
+          // If the product is not in the cart, add it with quantity and total price
+          cartItems.push({
+            name: productName,
+            price: price,
+            quantity: 1,
+            totalPrice: price
+          });
+        }
+
+        // Enregistrez le tableau cartItems mis à jour dans le stockage local
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+
+        // Mettre à jour le nombre d'articles du panier dans le logo
+        updateCartItemCount();
+      
+        showNotification(`${productName} a été ajouté au panier!`);
+      }
+
+      // Function to show the notification message
+      function showNotification(message) {
+        let notification = document.createElement('div');
+        notification.className = 'notification';
+        notification.textContent = message;
+        document.body.appendChild(notification);
+
+        // Set a timeout to remove the message after 3 seconds
+        setTimeout(() => {
+          notification.remove();
+        }, 3000);
+      }
+
+      // Fonction pour mettre à jour le nombre d'articles du panier dans le logo
+      function updateCartItemCount() {
+        let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+        let cartItemCount = cartItems.length;
+        document.getElementById('cart-item-count').innerText = cartItemCount.toString();
+      }
+
+      // Appel de la fonction updateCartItemCount lors du chargement de la page
+      document.addEventListener('DOMContentLoaded', updateCartItemCount);
+
     </script>
   </body>
 </html>

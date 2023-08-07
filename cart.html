@@ -74,16 +74,20 @@
           <tr>
             <th>Produit</th>
             <th>Quantité</th>
-            <th>Sous-total</th>
+            <th>Prix Total</th>
             <th>Action</th>
           </tr>
         </table>
         <div class="total-price">
           <table>
-            <!--<tr>
-              <td>Total:</td>
+            <tr>
+              <td>Sous total:</td>
               <td id="subtotal"> 0. FCFA</td>
-            </tr>-->
+            </tr>
+            <tr>
+              <td>Frais de livraison:</td>
+              <td id="delivery">0. FCFA</td>
+            </tr>
             <tr>
               <td>Montant Total:</td>
               <td id="total"> 0. FCFA</td>
@@ -198,6 +202,17 @@
         updateCartDisplay();
       }
 
+      // Fonction pour calculer la taxe en fonction du sous-total
+      function calculateTax(subtotal) {
+        let taxRate = 0.20; // Taux initial de 20%
+
+        if (subtotal > 20000) {
+          taxRate = 0.15; // Si le sous-total dépasse 20000 FCFA, le taux devient 15%
+        }
+
+        return subtotal * taxRate;
+      }
+
       function updateCartItemCount() {
         const cartItemCountElement = document.getElementById('cart-item-count');
         const itemCount = cartItems.length; // Récupérer le nombre de produits dans le panier
@@ -220,7 +235,7 @@
           <tr>
             <th>Produit</th>
             <th>Quantité</th>
-            <th>Sous-Total</th>
+            <th>Prix-Total</th>
           </tr>
         `;
 
@@ -250,13 +265,21 @@
         subtotal += item.price * item.quantity;
       });
   
+        // Calcul de la taxe
+        const tax = calculateTax(subtotal);
+
+        // Calcul du montant total (sous-total + taxe)
+        const total = subtotal + tax;
 
       // Mise à jour du total
       const subtotalElement = document.getElementById('subtotal');
+      const taxElement = document.getElementById('delivery'); 
       const totalElement = document.getElementById('total');
 
       //subtotalElement.textContent = `${subtotal.toFixed()} FCFA`;
-      totalElement.textContent = `${subtotal.toFixed()} FCFA`;
+      subtotalElement.textContent = `${subtotal.toFixed()} FCFA`;
+      taxElement.textContent = `${tax.toFixed()} FCFA`;
+      totalElement.textContent = `${total.toFixed()} FCFA`;
 
       const isLoggedIn = loggedIn;
       const hasValidOrder = isLoggedIn && orderValidated; // Supposons que `orderValidated` est une variable qui stocke l'état de validation de la commande
